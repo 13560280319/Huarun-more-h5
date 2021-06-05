@@ -1,12 +1,23 @@
 <template>
-  <div>你好</div>
-  <Button type="primary">按钮</Button>
+  <div class="swiper_box">
+    <swiper :direction="'vertical'">
+      <swiper-slide>
+        <div class="first_screen">
+          Slide 2
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        Slide 1
+      </swiper-slide>
+    </swiper>
+  </div>
 </template>
 <script setup>
-import { Button } from 'vant'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import 'swiper/swiper.less'
 </script>
 <style lang="less" scoped>
-div{
-  font-size: 60px;
+.swiper_box{
+  height: 100%;
 }
 </style>
