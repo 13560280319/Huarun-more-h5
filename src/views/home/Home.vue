@@ -18,13 +18,19 @@
         </div>
       </swiper-slide>
       <swiper-slide>
-        <PrefacePart></PrefacePart>
+        <PrefacePartCity></PrefacePartCity>
       </swiper-slide>
       <swiper-slide>
         <CityOpinion :opinionArray="cityOpinionList"></CityOpinion>
       </swiper-slide>
       <swiper-slide>
-        <PrefacePart></PrefacePart>
+        <PrefacePartCommunity></PrefacePartCommunity>
+      </swiper-slide>
+      <swiper-slide>
+        <BeautifulCommunity></BeautifulCommunity>
+      </swiper-slide>
+      <swiper-slide>
+        <PrefacePartSmart></PrefacePartSmart>
       </swiper-slide>
       <swiper-slide>
         <SmartService :opinionArray="SmartServiceList"></SmartService>
@@ -34,8 +40,11 @@
 </template>
 <script>
 import DownArrow from '@/components/DownArrow.vue'
-import PrefacePart from '@/views/home/components/PrefacePart.vue'
+import PrefacePartCity from '@/views/home/components/PrefacePartCity.vue'
+import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
+import PrefacePartCommunity from '@/views/home/components/PrefacePartCommunity.vue'
 import CityOpinion from '@/views/home/components/CityOpinion.vue'
+import BeautifulCommunity from '@/views/home/components/BeautifulCommunity.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
@@ -46,8 +55,11 @@ export default {
     Swiper,
     SwiperSlide,
     DownArrow,
-    PrefacePart,
+    PrefacePartCity,
+    PrefacePartCommunity,
+    PrefacePartSmart,
     CityOpinion,
+    BeautifulCommunity,
     SmartService
   },
   data () {
@@ -114,7 +126,17 @@ export default {
   setup () {
     const store = useStore()
     const onSlideChangeTransitionEnd = (swiper) => {
-      store.commit(SET_ACTIVE_SWIPER, swiper.activeIndex)
+      switch (swiper.activeIndex) {
+        case 1:
+          store.commit(SET_ACTIVE_SWIPER, 'city')
+          break
+        case 3:
+          store.commit(SET_ACTIVE_SWIPER, 'community')
+          break
+        case 4:
+          store.commit(SET_ACTIVE_SWIPER, 'smart')
+          break
+      }
     }
     return {
       onSlideChangeTransitionEnd
