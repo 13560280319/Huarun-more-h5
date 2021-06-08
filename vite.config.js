@@ -19,7 +19,8 @@ export default defineConfig({
   ],
   base: process.env.VITE_BASE_URL,
   server: {
-    host: '192.168.3.51',
+    // host: '192.168.3.51',
+    host: '172.20.10.11',
     port: 5000
   },
   resolve: {

@@ -1,0 +1,1 @@
+export const SET_ACTIVE_SWIPER = 'SET_ACTIVE_SWIPER'

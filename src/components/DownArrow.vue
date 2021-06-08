@@ -10,7 +10,7 @@
 .bottom_img{
   width: 100%;
   position: absolute;
-  bottom: 5PX;
+  bottom: 6PX;
   .gif_box{
     margin: 0 auto;
     width: 60px;
