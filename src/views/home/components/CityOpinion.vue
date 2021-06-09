@@ -11,7 +11,7 @@
       <div class="opinion_content city_content">
         <div class="opinion_item" v-for="(item, index) in props.opinionArray" :key="index">
           <template v-if="index === shimIndex">
-            <div class="title">{{ item.title }}</div>
+            <!-- <div class="title">{{ item.title }}</div> -->
             <div class="explain">{{ item.explain }}</div>
             <div class="description">{{ item.description }}</div>
           </template>

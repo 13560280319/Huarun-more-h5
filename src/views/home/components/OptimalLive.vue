@@ -54,7 +54,7 @@ const communityTitleList = [
   },
   '为成年人解锁独处空间',
   '让家庭陪伴&社交聚餐更有趣',
-  '日常生活中不做“细节绝缘体'
+  '日常生活中不做“细节绝缘体”'
 ]
 
 const overlayTag = ref(null) // overlay 数据切换标志

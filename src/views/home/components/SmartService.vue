@@ -3,7 +3,7 @@
     <div class="opinion_box">
       <div class="opinion_content">
         <div v-if="shimIndex === 0" class="smart_home">
-          <div class="title smartAnimation">{{ props.opinionArray[0].title }}</div>
+          <!-- <div class="title smartAnimation">{{ props.opinionArray[0].title }}</div> -->
           <div class="explain smartAnimation">{{  props.opinionArray[0].explain }}</div>
           <div class="description smartAnimation">{{  props.opinionArray[0].description }}</div>
           <div class="image_box">
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div v-if="shimIndex === 1" class="smart_community">
-          <div class="title smartAnimation">{{ props.opinionArray[1].title }}</div>
+          <!-- <div class="title smartAnimation">{{ props.opinionArray[1].title }}</div> -->
           <div class="explain smartAnimation">{{  props.opinionArray[1].explain }}</div>
           <div class="description smartAnimation">{{  props.opinionArray[1].description }}</div>
           <div class="image_box">
@@ -43,7 +43,7 @@
           </div>
         </div>
         <div v-if="shimIndex === 2" class="property_services">
-          <div class="title smartAnimation">{{ props.opinionArray[2].title }}</div>
+          <!-- <div class="title smartAnimation">{{ props.opinionArray[2].title }}</div> -->
           <div class="explain smartAnimation">{{  props.opinionArray[2].explain }}</div>
           <div class="description smartAnimation">{{  props.opinionArray[2].description }}</div>
           <div class="image_box">
