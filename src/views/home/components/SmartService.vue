@@ -3,9 +3,9 @@
     <div class="opinion_box">
       <div class="opinion_content">
         <div v-if="shimIndex === 0" class="smart_home">
-          <div class="title">{{ props.opinionArray[0].title }}</div>
-          <div class="explain">{{  props.opinionArray[0].explain }}</div>
-          <div class="description">{{  props.opinionArray[0].description }}</div>
+          <div class="title smartAnimation">{{ props.opinionArray[0].title }}</div>
+          <div class="explain smartAnimation">{{  props.opinionArray[0].explain }}</div>
+          <div class="description smartAnimation">{{  props.opinionArray[0].description }}</div>
           <div class="image_box">
             <div class="imgage_content">
               <div class="each_img">
@@ -30,9 +30,9 @@
           </div>
         </div>
         <div v-if="shimIndex === 1" class="smart_community">
-          <div class="title">{{ props.opinionArray[1].title }}</div>
-          <div class="explain">{{  props.opinionArray[1].explain }}</div>
-          <div class="description">{{  props.opinionArray[1].description }}</div>
+          <div class="title smartAnimation">{{ props.opinionArray[1].title }}</div>
+          <div class="explain smartAnimation">{{  props.opinionArray[1].explain }}</div>
+          <div class="description smartAnimation">{{  props.opinionArray[1].description }}</div>
           <div class="image_box">
             <div class="top_image">
               <img class="full_img" src="./../../../assets/1000.png" alt="">
@@ -43,9 +43,9 @@
           </div>
         </div>
         <div v-if="shimIndex === 2" class="property_services">
-          <div class="title">{{ props.opinionArray[2].title }}</div>
-          <div class="explain">{{  props.opinionArray[2].explain }}</div>
-          <div class="description">{{  props.opinionArray[2].description }}</div>
+          <div class="title smartAnimation">{{ props.opinionArray[2].title }}</div>
+          <div class="explain smartAnimation">{{  props.opinionArray[2].explain }}</div>
+          <div class="description smartAnimation">{{  props.opinionArray[2].description }}</div>
           <div class="image_box">
             <div class="imgage_content">
               <div class="each_img">
@@ -75,15 +75,28 @@
   </div>
 </template>
 <script setup>
-import { defineProps, ref } from 'vue'
+import { animateCSS } from '@/utils/animationEnd'
+import { computed, defineProps, nextTick, ref, watch } from 'vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const props = defineProps({
   opinionArray: Object
 })
 const shimIndex = ref(0)
 
+const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
+watch(currentSwiperIndex, (newVal) => {
+  if (newVal === 8) {
+    animateCSS('.smartAnimation', ['animate__fadeInDown'], 0, true, true)
+  }
+})
+
 const handleOpinion = (index) => {
   shimIndex.value = index
+  nextTick(() => {
+    animateCSS('.smartAnimation', ['animate__fadeInDown'], 0, true, true)
+  })
 }
 </script>
 <style lang="less" scoped>
@@ -134,13 +147,11 @@ const handleOpinion = (index) => {
           .each_img{
             margin-top: 35px;
             width: 335px;
-            background: rgb(249,249,249);
           }
         }
         .top_image, .bottom_image{
           width: 100%;
           height: 310px;
-          background: rgb(249,249,249);
         }
         .bottom_image{
           margin-top: 22px;

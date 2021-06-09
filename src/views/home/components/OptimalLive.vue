@@ -9,7 +9,7 @@
         <div v-if="shimIndex !== 0" class="optimal_item">
           <div v-for="(item, index) in communityTitleList" :key="index">
             <div class="item_content" v-if="shimIndex === (index + 1)">
-              <div class="title">{{ index === 0 ? item.text1 + '\n' + item.text2 : item }}</div>
+              <div class="title optimalTitle">{{ index === 0 ? item.text1 + '\n' + item.text2 : item }}</div>
               <div v-if="index > 0" class="touch_box" @click="handleMiddleImage(index)">
                 <div class="touch_image">
                   <img class="full_img" src="./../../../assets/touch.gif" alt="">
@@ -37,12 +37,13 @@
 import OverlayInner from './../components/OverlayInner.vue'
 import communityBg0 from './../../../assets/usually.png'
 import communityBg1 from './../../../assets/kk11.jpg'
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
 import { SET_OPTIMAL_OVERLAY } from '@/store/mutation-types'
 import { isImageFile } from 'vant/lib/uploader/utils'
 import * as imageList from '@/views/home/js/backgroundImage'
+import { animateCSS } from '@/utils/animationEnd'
 
 const store = useStore()
 const communityNameList = ['研究洞察', '主张', '卧室+阳台', '客厅+餐厨', '卫浴+收纳']
@@ -103,10 +104,15 @@ const showOptimalOverlay = computed(() => store.state.showOptimalOverlay)
 
 const handleOptimal = (index) => { // 点击每个主张
   shimIndex.value = index
+  nextTick(() => {
+    if (index > 0) {
+      animateCSS('.optimalTitle', ['animate__fadeInDown'], 0, true)
+    }
+  })
   if (index === 1 || index === 3) {
-    communityBgResult.value = communityBgUrl0
+    communityBgResult.value = 'none'
   } else if (index === 2 || index === 4) {
-    communityBgResult.value = communityBg1
+    communityBgResult.value = 'none'
   } else {
     communityBgResult.value = 'none'
   }
@@ -132,7 +138,6 @@ const handleMiddleImage = (index) => { // 点击中心图片
           margin: 0 auto;
           width: 600px;
           height: 450px;
-          background-color: #f9f9f9;
           background-position: 80px -370px;
           background-size: 75%;
           background-image: url(./../../../assets/bing2.gif);
@@ -142,7 +147,6 @@ const handleMiddleImage = (index) => { // 点击中心图片
           margin: 30px auto;
           width: 600px;
           height: 500px;
-          background-color: #f9f9f9;
           background-position: 125px -280px;
           background-size: 60%;
           background-image: url(./../../../assets/zhu1.gif);
@@ -152,7 +156,7 @@ const handleMiddleImage = (index) => { // 点击中心图片
           margin-top: 90px;
           padding-left: 68px;
           line-height: 50px;
-          color: #FFFFFF;
+          color: #333333;
           font-size: 42px;
           font-family: "VWText-Regular","HYQiHei-60S";
           font-weight: normal;

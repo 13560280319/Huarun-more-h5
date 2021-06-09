@@ -3,7 +3,7 @@
     <div class="opinion_box">
       <div class="opinion_content">
         <div v-if="shimIndex === 0" class="opinion_item">
-          <p class="min_title">谁经常在社区活动？</p>
+          <p class="min_title oneAnimation">谁经常在社区活动？</p>
           <div class="research_top_img">
           </div>
           <div class="research_bottom_img">
@@ -18,7 +18,7 @@
         <div v-else class="opinion_item">
           <div v-for="(item, index) in communityTitleList" :key="index">
             <div class="item_content" v-if="shimIndex === (index + 1)">
-              <div class="title">{{ item }}</div>
+              <div class="title twoAnimation">{{ item }}</div>
               <div v-if="index > 0" class="touch_box" @click="handleMiddleImage(index)">
                 <div class="touch_image">
                   <img class="full_img" src="./../../../assets/touch.gif" alt="">
@@ -46,11 +46,12 @@
 import OverlayInner from './../components/OverlayInner.vue'
 import communityBg0 from './../../../assets/usually.png'
 import communityBg1 from './../../../assets/kk11.jpg'
-import { ref, computed } from 'vue'
-import { useStore } from 'vuex'
-import { Overlay } from 'vant'
+import { animateCSS } from '@/utils/animationEnd'
 import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
 import * as imageList from './../js/backgroundImage'
+import { ref, computed, nextTick, watch } from 'vue'
+import { useStore } from 'vuex'
+import { Overlay } from 'vant'
 
 const store = useStore()
 const communityNameList = ['研究过程', '洞擦结果', '功能模块', '幸福归家路', '优居研究所']
@@ -115,12 +116,26 @@ const communityBgUrl1 = 'url(' + communityBg1 + ')'
 const communityBgResult = ref('none')
 const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
 
+const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
+watch(currentSwiperIndex, (newVal) => {
+  if (newVal === 4) {
+    animateCSS('.oneAnimation', ['animate__fadeInDown'], 0, true)
+  }
+})
+
 const handleOpinion = (index) => { // 点击每个主张
   shimIndex.value = index
+  nextTick(() => {
+    if (index === 0) {
+      animateCSS('.oneAnimation', ['animate__fadeInDown'], 0, true)
+    } else if (index > 1) { // “洞察结果”没有需要做动画的文字，所以排除掉
+      animateCSS('.twoAnimation', ['animate__fadeInDown'], 0, true)
+    }
+  })
   if (index === 1 || index === 3) {
-    communityBgResult.value = communityBgUrl0
+    communityBgResult.value = 'none'
   } else if (index === 2 || index === 4) {
-    communityBgResult.value = communityBg1
+    communityBgResult.value = 'none'
   } else {
     communityBgResult.value = 'none'
   }
@@ -164,13 +179,12 @@ const handleMiddleImage = (index) => { // 点击中心图片
         .research_bottom_img{
           margin: 30px auto;
           width: 400px;
-          background-color: #f9f9f9;
         }
         .title{
           margin-top: 90px;
           padding-left: 68px;
           line-height: 50px;
-          color: #FFFFFF;
+          color: #333333;
           font-size: 42px;
           font-family: "VWText-Regular","HYQiHei-60S";
           font-weight: normal;
@@ -202,8 +216,7 @@ const handleMiddleImage = (index) => { // 点击中心图片
           }
         }
         .research_image{
-          margin: 0 auto;
-          width: 465px;
+          margin: 350px auto;
         }
       }
     }
