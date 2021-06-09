@@ -1,19 +1,15 @@
 <template>
-  <div class="opinion" :style="{ backgroundImage: communityBgResult }">
-    <div class="opinion_box">
-      <div class="opinion_content">
-        <div v-if="shimIndex === 0" class="opinion_item">
-          <p class="min_title">谁经常在社区活动？</p>
-          <div class="research_top_img">
-          </div>
-          <div class="research_bottom_img">
-            <img class="full_img" src="./../../../assets/3001.png" alt="">
-          </div>
+  <div class="optimal" :style="{ backgroundImage: communityBgResult }">
+    <div class="optimal_box">
+      <div class="optimal_content">
+        <div v-if="shimIndex === 0" class="optimal_item">
+          <div class="research_top_img"></div>
+          <div class="research_bottom_img"></div>
         </div>
-        <div v-if="shimIndex !== 0" class="opinion_item">
+        <div v-if="shimIndex !== 0" class="optimal_item">
           <div v-for="(item, index) in communityTitleList" :key="index">
             <div class="item_content" v-if="shimIndex === (index + 1)">
-              <div class="title">{{ item }}</div>
+              <div class="title">{{ index === 0 ? item.text1 + '\n' + item.text2 : item }}</div>
               <div v-if="index > 0" class="click_image" @click="handleMiddleImage(index)">
                 <img class="full_img" src="./../../../assets/200000.jpeg" alt="">
               </div>
@@ -21,15 +17,15 @@
           </div>
         </div>
       </div>
-      <div class="opinion_type">
-        <div :class="{ activeOpinion: shimIndex === index }" class="each_opinion" v-for="(item, index) in communityNameList" :key="index" @click="handleOpinion(index)">{{ item }}</div>
+      <div class="optimal_type">
+        <div v-for="(item, index) in communityNameList" :key="index" @click="handleOptimal(index)">{{ item }}</div>
       </div>
     </div>
-    <Overlay :show="showCommunityOverlay">
+    <Overlay :show="true">
       <OverlayInner :overlayData="
         overlayTag === 1 ? functionData : // 功能模块数据
         overlayTag === 2 ? happinessData : // 幸福归家路数据
-        overlayTag === 3 ? graduateData : null // 优居研究所数据
+        overlayTag === 3 ? graduateData : '' // 优居研究所数据
       "></OverlayInner>
     </Overlay>
   </div>
@@ -42,64 +38,45 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
 import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
-import * as imageList from './../js/backgroundImage'
 
 const store = useStore()
-const communityNameList = ['研究过程', '洞擦结果', '功能模块', '幸福归家路', '优居研究所']
+const communityNameList = ['研究洞察', '主张', '卧室+阳台', '客厅+餐厨', '卫浴+收纳']
 const communityTitleList = [
-  '',
-  '一个有温度、有互动的美好社区',
-  '幸福归家路 从细节之处打动人心',
-  'More+优居研究所 未来生活方式 即刻呈现'
+  {
+    text1: '每个人都有自己的生活方式，无论是一个人独处，还是热闹人多的家庭趴。同时，一个舒适的居住空间，将成为生活中重要的后备仓。',
+    text2: '华润置地广州不断追溯人们最为本质的体验感受，不断满足大家对未来生活最理想的状态。'
+  },
+  '为成年人解锁独处空间',
+  '让家庭陪伴&社交聚餐更有趣',
+  '日常生活中不做“细节绝缘体'
 ]
 
 const overlayTag = ref(null) // overlay 数据切换标志
 
 const functionData = { // 功能模块数据
   title: [
-    '精细化科学分区，给家长提供专享看护区域。',
-    '专属适老化娱乐空间，让长者融入集体。',
-    '建立社交共享空间，帮你找到灵魂好友。',
-    '多功能模块布局，让全家人找到运动乐趣。'
+    '卧室，每一平方都带有温度。',
+    '阳台，给自己一个会呼吸的能量场。'
   ],
-  image: [
-    imageList.lingliketing,
-    imageList.yixiangzhidi,
-    imageList.youlebao,
-    imageList.yundongjidi
-  ],
-  name: ['儿童游乐堡', '颐享之地', '邻里客厅', '运动基地']
+  image: [],
+  name: ['卧室', '阳台']
 }
 
 const happinessData = { // 幸福归家路数据
   title: [
-    '入口人车分流，确保社区环境与安全。',
-    '回家仪式感，层层递进。',
-    '科学合理的风、光、声设计，舒适环境更欢乐。',
-    '配建约15万m2空中花园，让绿色融入生活中。',
-    '无障碍、无尖角、夜跑导航、休憩宽椅等人性化设计。'
+    '多功能客厅，随意切换多种生活场景，情感交流无障碍。',
+    '开放式厨房连接岛台餐厨，打开心扉拒绝“社恐症”。'
   ],
-  image: [
-    imageList.anquan2,
-    imageList.yishigan1,
-    imageList.shushigan2,
-    imageList.kongzhonghuayuan2,
-    imageList.renxinghua1
-  ],
-  name: ['环境与安全', '仪式感', '舒适感', '空中花园', '人性化设计']
+  image: [],
+  name: ['客厅', '餐厨']
 }
 const graduateData = { // 优居研究所数据
   title: [
-    '社群生活圈 提升幸福指数。',
-    '理想小“社会”， 实现“半径生活梦”。',
-    '活跃在景观中的互动 连接人地关系。'
+    '干湿分离式卫浴，让居住多一份舒适。',
+    '全屋收纳，腾出更多空间留给家人相处。'
   ],
-  image: [
-    imageList.shenghuoquan,
-    imageList.shenghuomeng,
-    imageList.renjiguanxi
-  ],
-  name: ['生活圈', '生活梦', '人际关系']
+  image: [],
+  name: ['卫浴', '收纳']
 }
 
 const shimIndex = ref(0)
@@ -110,7 +87,7 @@ const communityBgResult = ref('none')
 
 const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
 
-const handleOpinion = (index) => { // 点击每个主张
+const handleOptimal = (index) => { // 点击每个主张
   shimIndex.value = index
   if (index === 1 || index === 3) {
     communityBgResult.value = communityBgUrl0
@@ -127,39 +104,35 @@ const handleMiddleImage = (index) => { // 点击中心图片
 }
 </script>
 <style lang="less" scoped>
-.opinion{
-  position: relative;
+.optimal{
   height: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: rgba(255,255,255,1);
-  .opinion_box{
-    .opinion_content{
+  .optimal_box{
+    .optimal_content{
       overflow: hidden;
-      .opinion_item{
+      .optimal_item{
         padding: 25px 20px 0;
-        .min_title{
-          margin: 20px 0 0 20px;
-          height: 40px;
-          line-height: 40px;
-          font-size: 40px;
-          font-family: 'Orkney-Bold';
-          font-weight: 600;
-          color: rgb(35,24,21);
-        }
         .research_top_img{
           margin: 0 auto;
-          width: 400px;
-          height: 400px;
-          background-image: url(./../../../assets/bing1.gif);
-          background-position: -50px -280px;
-          background-size: 100%;
+          width: 600px;
+          height: 450px;
+          background-color: #f9f9f9;
+          background-position: 80px -370px;
+          background-size: 75%;
+          background-image: url(./../../../assets/bing2.gif);
           background-repeat: no-repeat;
         }
         .research_bottom_img{
           margin: 30px auto;
-          width: 400px;
+          width: 600px;
+          height: 500px;
           background-color: #f9f9f9;
+          background-position: 125px -280px;
+          background-size: 60%;
+          background-image: url(./../../../assets/zhu1.gif);
+          background-repeat: no-repeat;
         }
         .title{
           margin-top: 90px;
@@ -184,7 +157,7 @@ const handleMiddleImage = (index) => { // 点击中心图片
         }
       }
     }
-    .opinion_type{
+    .optimal_type{
       position: absolute;
       width: 100%;
       top: 75%;
@@ -192,7 +165,7 @@ const handleMiddleImage = (index) => { // 点击中心图片
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
-      .each_opinion{
+      div{
         margin: 0 3%;
         padding-top: 28px;
         width: 27%;
@@ -205,11 +178,6 @@ const handleMiddleImage = (index) => { // 点击中心图片
         font-size: 28px;
         font-weight: normal;
         font-family: "VWText-Regular","HYQiHei-60S";
-      }
-      .activeOpinion{
-        color: rgba(244,195,56, 1);
-        font-size: 29px;
-        font-weight: bold;
       }
     }
   }

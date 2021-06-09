@@ -4,11 +4,12 @@
     <div class="overlay_content">
       <div class="title">{{ propsObj.overlayData.title[currentIndex] }}</div>
       <div class="image_box">
-        <img class="full_img" src="./../../../assets/2002.png" alt="">
+        <img class="full_img" :src="propsObj.overlayData.image[currentIndex]" alt="">
       </div>
     </div>
+    <!-- 美好社区二级主张 -->
     <div class="community_type">
-      <div v-for="(item, index) in propsObj.overlayData.name" :key="index" @click="handleOpinion(index)">{{ item }}</div>
+      <div class="each_opinion" :class="{ activeOpinion: currentIndex === index }" v-for="(item, index) in propsObj.overlayData.name" :key="index" @click="handleOpinion(index)">{{ item }}</div>
     </div>
   </div>
 </template>
@@ -16,7 +17,7 @@
 import { Icon } from 'vant'
 import { defineProps, ref } from 'vue'
 import { useStore } from 'vuex'
-import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
+import { SET_COMMUNITY_OVERLAY, SET_OPTIMAL_OVERLAY } from '@/store/mutation-types'
 
 const store = useStore()
 const currentIndex = ref(0)
@@ -24,11 +25,13 @@ const propsObj = defineProps({
   overlayData: Object
 })
 
-const handleClose = () => {
+const handleClose = () => { // 点击右上角关闭按钮
   store.commit(SET_COMMUNITY_OVERLAY, false)
+  store.commit(SET_OPTIMAL_OVERLAY, false)
+  currentIndex.value = 0
 }
 
-const handleOpinion = (index) => {
+const handleOpinion = (index) => { // 点击每个主张
   currentIndex.value = index
 }
 </script>
@@ -38,22 +41,19 @@ const handleOpinion = (index) => {
   height: 100%;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 1);
-  // background-image: url(./../../../assets/kk11.jpg);
-  // background-size: 100% 100%;
-  // background-repeat: no-repeat;
   .overlay_content{
     .title{
-      margin-top: 90px;
-      padding-left: 68px;
-      line-height: 50px;
+      margin-top: 120px;
+      padding: 0 20px 0 50px;
+      line-height: 55px;
       color: #333333;
       font-size: 36px;
       font-family: "VWText-Regular","HYQiHei-60S";
       font-weight: normal;
     }
     .image_box{
-      margin-top: 150px;
-      padding: 0 50px;
+      margin-top: 180px;
+      padding: 0 100px;
       box-sizing: border-box;
     }
   }
@@ -65,7 +65,7 @@ const handleOpinion = (index) => {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    div{
+    .each_opinion{
       margin: 0 3%;
       padding-top: 28px;
       width: 27%;
@@ -78,6 +78,11 @@ const handleOpinion = (index) => {
       font-size: 28px;
       font-weight: normal;
       font-family: "VWText-Regular","HYQiHei-60S";
+    }
+    .activeOpinion{
+      color: rgba(244,195,56, 1);
+      font-size: 29px;
+      font-weight: bold;
     }
   }
 }

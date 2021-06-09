@@ -10,7 +10,7 @@
           <div v-for="(item, index) in communityTitleList" :key="index">
             <div class="item_content" v-if="shimIndex === (index + 1)">
               <div class="title">{{ index === 0 ? item.text1 + '\n' + item.text2 : item }}</div>
-              <div v-if="index > 0" class="click_image" @click="handleMiddleImage(index)">
+              <div v-if="index > 0" class="click_image" @click="handleMiddleImageHH(index)">
                 <img class="full_img" src="./../../../assets/200000.jpeg" alt="">
               </div>
             </div>
@@ -21,7 +21,7 @@
         <div v-for="(item, index) in communityNameList" :key="index" @click="handleOptimal(index)">{{ item }}</div>
       </div>
     </div>
-    <Overlay :show="showCommunityOverlay">
+    <Overlay :show="showOptimalOverlay ">
       <OverlayInner :overlayData="
         overlayTag === 1 ? functionData : // 功能模块数据
         overlayTag === 2 ? happinessData : // 幸福归家路数据
@@ -32,12 +32,12 @@
 </template>
 <script setup>
 import OverlayInner from './../components/OverlayInner.vue'
-import communityBg0 from './../../../assets/background.png'
+import communityBg0 from './../../../assets/usually.png'
 import communityBg1 from './../../../assets/kk11.jpg'
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
-import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
+import { SET_OPTIMAL_OVERLAY } from '@/store/mutation-types'
 
 const store = useStore()
 const communityNameList = ['研究洞察', '主张', '卧室+阳台', '客厅+餐厨', '卫浴+收纳']
@@ -85,7 +85,7 @@ const communityBgUrl1 = 'url(' + communityBg1 + ')'
 
 const communityBgResult = ref('none')
 
-const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
+const showOptimalOverlay = computed(() => store.state.showOptimalOverlay)
 
 const handleOptimal = (index) => { // 点击每个主张
   shimIndex.value = index
@@ -98,8 +98,8 @@ const handleOptimal = (index) => { // 点击每个主张
   }
 }
 
-const handleMiddleImage = (index) => { // 点击中心图片
-  store.commit(SET_COMMUNITY_OVERLAY, true)
+const handleMiddleImageHH = (index) => { // 点击中心图片
+  store.commit(SET_OPTIMAL_OVERLAY, true)
   overlayTag.value = index // 动态改变 overlayTag
 }
 </script>
