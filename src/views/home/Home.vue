@@ -181,21 +181,21 @@ export default {
         dl{
           width: 25%;
           dt{
-            height: 34PX;
-            line-height: 34PX;
+            height: 17px;
+            line-height: 17px;
             text-align: center;
-            font-size: 34PX;
+            font-size: 17px;
             font-weight: 600;
             font-family: 'VWText-Regular','HYQiHei-60S';
             color: #333333;
           }
           dd{
             margin-top: 16px;
-            height: 24PX;
-            line-height: 24PX;
+            height: 12px;
+            line-height: 12px;
             text-align: center;
             color: #333333;
-            font-size: 24PX;
+            font-size: 12px;
             font-weight: 600;
             font-family: 'VWText-Regular','HYQiHei-60S';
           }
