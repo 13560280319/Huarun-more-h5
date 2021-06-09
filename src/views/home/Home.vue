@@ -54,8 +54,6 @@ import SmartService from '@/views/home/components/SmartService.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
 import { onMounted } from 'vue'
-import { useStore } from 'vuex'
-import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
 export default {
   components: {
     Swiper,
@@ -132,14 +130,11 @@ export default {
     }
   },
   setup () {
-    const store = useStore()
     let swiper = null
     onMounted(() => {
       swiper = document.querySelector('.swiper-container').swiper
     })
-    const onSlideChangeTransitionEnd = (swiper) => {
-      store.commit(SET_COMMUNITY_OVERLAY, false)
-    }
+    const onSlideChangeTransitionEnd = (swiper) => {}
     const handleEachOpinion = (index) => {
       switch (index) {
         case 0:

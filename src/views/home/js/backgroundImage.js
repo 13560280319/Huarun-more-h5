@@ -16,6 +16,14 @@ import renjiguanxi from '@/assets/renjiguanxi.png'
 import shenghuomeng from '@/assets/shenghuomeng.png'
 import shenghuoquan from '@/assets/shenghuoquan.png'
 
+// --------------------------------------------------------------------优居生活
+import canchu from '@/assets/canchu.png'
+import keting from '@/assets/keting.png'
+import shouna from '@/assets/shouna.png'
+import weiyu from '@/assets/weiyu.png'
+import woshi from '@/assets/woshi.png'
+import yangtai from '@/assets/yangtai.png'
+
 export {
   anquan2,
   kongzhonghuayuan2,
@@ -28,5 +36,11 @@ export {
   lingliketing,
   yixiangzhidi,
   youlebao,
-  yundongjidi
+  yundongjidi,
+  canchu,
+  keting,
+  shouna,
+  weiyu,
+  woshi,
+  yangtai
 }

@@ -11,7 +11,7 @@
             <div class="item_content" v-if="shimIndex === (index + 1)">
               <div class="title">{{ index === 0 ? item.text1 + '\n' + item.text2 : item }}</div>
               <div v-if="index > 0" class="click_image" @click="handleMiddleImageHH(index)">
-                <img class="full_img" src="./../../../assets/200000.jpeg" alt="">
+                <img class="full_img" src="./../../../assets/touch.gif" alt="">
               </div>
             </div>
           </div>
@@ -38,6 +38,8 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
 import { SET_OPTIMAL_OVERLAY } from '@/store/mutation-types'
+import { isImageFile } from 'vant/lib/uploader/utils'
+import * as imageList from '@/views/home/js/backgroundImage'
 
 const store = useStore()
 const communityNameList = ['研究洞察', '主张', '卧室+阳台', '客厅+餐厨', '卫浴+收纳']
@@ -58,7 +60,10 @@ const functionData = { // 功能模块数据
     '卧室，每一平方都带有温度。',
     '阳台，给自己一个会呼吸的能量场。'
   ],
-  image: [],
+  image: [
+    imageList.woshi,
+    imageList.yangtai
+  ],
   name: ['卧室', '阳台']
 }
 
@@ -67,7 +72,10 @@ const happinessData = { // 幸福归家路数据
     '多功能客厅，随意切换多种生活场景，情感交流无障碍。',
     '开放式厨房连接岛台餐厨，打开心扉拒绝“社恐症”。'
   ],
-  image: [],
+  image: [
+    imageList.keting,
+    imageList.canchu
+  ],
   name: ['客厅', '餐厨']
 }
 const graduateData = { // 优居研究所数据
@@ -75,7 +83,10 @@ const graduateData = { // 优居研究所数据
     '干湿分离式卫浴，让居住多一份舒适。',
     '全屋收纳，腾出更多空间留给家人相处。'
   ],
-  image: [],
+  image: [
+    imageList.weiyu,
+    imageList.shouna
+  ],
   name: ['卫浴', '收纳']
 }
 
@@ -148,7 +159,7 @@ const handleMiddleImageHH = (index) => { // 点击中心图片
           height: 500px;
           .click_image{
             position: absolute;
-            width: 100px;
+            width: 150px;
             top: 350px;
             left: 50%;
             transform: translate(-50%, 0);

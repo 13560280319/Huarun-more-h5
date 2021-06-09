@@ -15,7 +15,7 @@
             <div class="item_content" v-if="shimIndex === (index + 1)">
               <div class="title">{{ item }}</div>
               <div v-if="index > 0" class="click_image" @click="handleMiddleImage(index)">
-                <img class="full_img" src="./../../../assets/200000.jpeg" alt="">
+                <img class="full_img" src="./../../../assets/touch.gif" alt="">
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ const handleMiddleImage = (index) => { // 点击中心图片
           height: 500px;
           .click_image{
             position: absolute;
-            width: 100px;
+            width: 150px;
             top: 350px;
             left: 50%;
             transform: translate(-50%, 0);
