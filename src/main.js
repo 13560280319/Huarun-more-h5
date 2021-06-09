@@ -5,6 +5,7 @@ import store from '@/store'
 import 'amfe-flexible/index'
 import '@/common/css/index.less'
 import 'animate.css'
+import '@/common/font/font.css'
 
 const app = createApp(App).use(router).use(store)
 

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Orkney-Regular';
+  src:url('./Orkney-Regular_0.otf');
+}
+
+@font-face {
+  font-family:'Orkney-Bold';
+  src:url('./Orkney-Bold_0.otf');
+}
+
+@font-face {
+  font-family: 'SourceHanSansSC-Normal';
+  src:url('./SourceHanSansSC-Normal_0.otf');
+}
+
+@font-face {
+  font-family: 'SourceHanSansSC-Medium';
+  src:url('./SourceHanSansSC-Medium_0.otf');
+}
+
+@font-face {
+  font-family: 'SourceHanSansSC-Bold';
+  src:url('./SourceHanSansSC-Bold_0.otf');
+}

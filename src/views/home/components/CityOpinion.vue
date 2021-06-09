@@ -1,5 +1,12 @@
 <template>
-  <div class="opinion">
+  <div class="opinion" :style="{
+    backgroundImage:
+    shimIndex === 0 ? city0After :
+    shimIndex === 1 ? city1After :
+    shimIndex === 2 ? city2After :
+    shimIndex === 3 ? city3After :
+    shimIndex === 4 ? city4After : ''
+  }">
     <div class="opinion_box">
       <div class="opinion_content">
         <div class="opinion_item" v-for="(item, index) in props.opinionArray" :key="index">
@@ -18,11 +25,21 @@
 </template>
 <script setup>
 import { defineProps, ref } from 'vue'
+import city0 from './../../../assets/city1.jpg'
+import city1 from './../../../assets/city2.jpg'
+import city2 from './../../../assets/city3.jpg'
+import city3 from './../../../assets/city4.jpg'
+import city4 from './../../../assets/city5.jpg'
 
+const city0After = 'url(' + city0 + ')'
+const city1After = 'url(' + city1 + ')'
+const city2After = 'url(' + city2 + ')'
+const city3After = 'url(' + city3 + ')'
+const city4After = 'url(' + city4 + ')'
+const shimIndex = ref(0)
 const props = defineProps({
   opinionArray: Object
 })
-const shimIndex = ref(0)
 
 const handleOpinion = (index) => {
   shimIndex.value = index
@@ -31,7 +48,7 @@ const handleOpinion = (index) => {
 <style lang="less" scoped>
 .opinion{
   height: 100%;
-  background-image: url('./../../../assets/background.png');
+  background-position: 0 -145px;
   background-size: 100%;
   background-repeat: no-repeat;
   .opinion_box{
@@ -42,7 +59,7 @@ const handleOpinion = (index) => {
         padding-left: 68px;
         height: 50px;
         line-height: 50px;
-        color: #FFFFFF;
+        color: #333333;
         font-size: 50px;
         font-family: "VWText-Regular","HYQiHei-60S";
         font-weight: normal;
@@ -52,7 +69,7 @@ const handleOpinion = (index) => {
         padding-left: 40px;
         height: 32px;
         line-height: 32px;
-        color: #FFFFFF;
+        color: #333333;
         font-size: 32px;
         font-family: "VWText-Regular","HYQiHei-60S";
         font-weight: normal;
@@ -62,7 +79,7 @@ const handleOpinion = (index) => {
         padding-left: 40px;
         line-height: 42px;
         font-size: 24px;
-        color: rgba(255,255,255,0.8);
+        color: #333333;
         font-family: "VWText-Light","HYQiHei-40S";
         font-weight: normal;
       }
@@ -70,7 +87,7 @@ const handleOpinion = (index) => {
     .opinion_type{
       position: absolute;
       width: 100%;
-      top: 70%;
+      top: 75%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -84,9 +101,9 @@ const handleOpinion = (index) => {
         text-align: center;
         border-bottom: 1px solid rgba(255,255,255,0.3);
         box-sizing: border-box;
-        color: #FFFFFF;;
-        font-size: 28px;
-        font-weight: normal;
+        color: #333333;
+        font-size: 32px;
+        font-weight: 600;
         font-family: "VWText-Regular","HYQiHei-60S";
       }
     }

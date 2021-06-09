@@ -3,16 +3,13 @@
     <swiper :direction="'vertical'" @slideChangeTransitionEnd="onSlideChangeTransitionEnd">
       <swiper-slide>
         <div class="swiper1">
-          <div class="logo_box">
-            <div class="img_box">
-              <img class="full_img" src="./../../assets/Snipaste_2021-06-06_00-02-04.png" alt="">
-            </div>
-          </div>
           <div class="opinion_box">
-            <dl v-for="(item, index) of opinionList" :key="index">
-              <dt>{{ item.tag }}</dt>
-              <dd>{{ item.title }}</dd>
-            </dl>
+            <div class="opinion_content">
+              <dl v-for="(item, index) of opinionList" :key="index" @click="handleEachOpinion(index)">
+                <dt>{{ item.tag }}</dt>
+                <dd>{{ item.title }}</dd>
+              </dl>
+            </div>
           </div>
           <DownArrow></DownArrow>
         </div>
@@ -30,6 +27,12 @@
         <BeautifulCommunity></BeautifulCommunity>
       </swiper-slide>
       <swiper-slide>
+        <PrefacePartLive></PrefacePartLive>
+      </swiper-slide>
+      <swiper-slide>
+        <OptimalLive></OptimalLive>
+      </swiper-slide>
+      <swiper-slide>
         <PrefacePartSmart></PrefacePartSmart>
       </swiper-slide>
       <swiper-slide>
@@ -42,14 +45,15 @@
 import DownArrow from '@/components/DownArrow.vue'
 import PrefacePartCity from '@/views/home/components/PrefacePartCity.vue'
 import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
+import PrefacePartLive from '@/views/home/components/PrefacePartLive.vue'
 import PrefacePartCommunity from '@/views/home/components/PrefacePartCommunity.vue'
 import CityOpinion from '@/views/home/components/CityOpinion.vue'
 import BeautifulCommunity from '@/views/home/components/BeautifulCommunity.vue'
+import OptimalLive from '@/views/home/components/OptimalLive.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
-import { useStore } from 'vuex'
-import { SET_ACTIVE_SWIPER } from '@/store/mutation-types'
+import { onMounted } from 'vue'
 export default {
   components: {
     Swiper,
@@ -57,9 +61,11 @@ export default {
     DownArrow,
     PrefacePartCity,
     PrefacePartCommunity,
+    PrefacePartLive,
     PrefacePartSmart,
     CityOpinion,
     BeautifulCommunity,
+    OptimalLive,
     SmartService
   },
   data () {
@@ -124,22 +130,31 @@ export default {
     }
   },
   setup () {
-    const store = useStore()
-    const onSlideChangeTransitionEnd = (swiper) => {
-      switch (swiper.activeIndex) {
+    let swiper = null
+    onMounted(() => {
+      swiper = document.querySelector('.swiper-container').swiper
+    })
+    const onSlideChangeTransitionEnd = (swiper) => {}
+    const handleEachOpinion = (index) => {
+      switch (index) {
+        case 0:
+          swiper.slideTo(1)
+          break
         case 1:
-          store.commit(SET_ACTIVE_SWIPER, 'city')
+          swiper.slideTo(3)
+          break
+        case 2:
+          swiper.slideTo(5)
           break
         case 3:
-          store.commit(SET_ACTIVE_SWIPER, 'community')
-          break
-        case 4:
-          store.commit(SET_ACTIVE_SWIPER, 'smart')
+          swiper.slideTo(7)
           break
       }
     }
+
     return {
-      onSlideChangeTransitionEnd
+      onSlideChangeTransitionEnd,
+      handleEachOpinion
     }
   }
 }
@@ -151,44 +166,40 @@ export default {
     position: relative;
     overflow: hidden;
     height: 100%;
-    background-image: url('./../../assets/kk11.jpg');
+    background-image: url('./../../assets/homePage.gif');
     background-size: 100%;
     background-repeat: no-repeat;
-    .logo_box{
-      margin-top: 35px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-end;
-      .img_box{
-        width: 200px;
-        height: 70px;
-      }
-    }
     .opinion_box{
-      padding: 0px 50px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       position: absolute;
       top: 72%;
-      box-sizing: border-box;
-      dl dt{
-        height: 34px;
-        line-height: 34px;
-        text-align: center;
-        font-size: 34px;
-        font-family: 'VWText-Regular','HYQiHei-60S';
-        color: #fff;
-      }
-      dl dd{
-        margin-top: 16px;
-        height: 22px;
-        line-height: 22px;
-        text-align: center;
-        font-size: 22px;
-        font-family: 'VWText-Regular','HYQiHei-60S';
-        color: rgba(255,255,255,0.6);
+      width: 100%;
+      .opinion_content{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        dl{
+          width: 25%;
+          dt{
+            height: 34PX;
+            line-height: 34PX;
+            text-align: center;
+            font-size: 34PX;
+            font-weight: 600;
+            font-family: 'VWText-Regular','HYQiHei-60S';
+            color: #333333;
+          }
+          dd{
+            margin-top: 16px;
+            height: 24PX;
+            line-height: 24PX;
+            text-align: center;
+            color: #333333;
+            font-size: 24PX;
+            font-weight: 600;
+            font-family: 'VWText-Regular','HYQiHei-60S';
+          }
+        }
       }
     }
   }
