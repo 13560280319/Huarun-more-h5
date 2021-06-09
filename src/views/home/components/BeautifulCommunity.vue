@@ -10,12 +10,20 @@
             <img class="full_img" src="./../../../assets/3001.png" alt="">
           </div>
         </div>
-        <div v-if="shimIndex !== 0" class="opinion_item">
+        <div v-else-if="shimIndex === 1" class="opinion_item">
+          <div class="research_image">
+            <img class="full_img" src="./../../../assets/yanjiuguiji.png" alt="">
+          </div>
+        </div>
+        <div v-else class="opinion_item">
           <div v-for="(item, index) in communityTitleList" :key="index">
             <div class="item_content" v-if="shimIndex === (index + 1)">
               <div class="title">{{ item }}</div>
-              <div v-if="index > 0" class="click_image" @click="handleMiddleImage(index)">
-                <img class="full_img" src="./../../../assets/touch.gif" alt="">
+              <div v-if="index > 0" class="touch_box" @click="handleMiddleImage(index)">
+                <div class="touch_image">
+                  <img class="full_img" src="./../../../assets/touch.gif" alt="">
+                </div>
+                <p class="touch_text">点击探索更多</p>
               </div>
             </div>
           </div>
@@ -70,7 +78,6 @@ const functionData = { // 功能模块数据
   ],
   name: ['儿童游乐堡', '颐享之地', '邻里客厅', '运动基地']
 }
-
 const happinessData = { // 幸福归家路数据
   title: [
     '入口人车分流，确保社区环境与安全。',
@@ -105,9 +112,7 @@ const graduateData = { // 优居研究所数据
 const shimIndex = ref(0)
 const communityBgUrl0 = 'url(' + communityBg0 + ')' // 背景图片变量
 const communityBgUrl1 = 'url(' + communityBg1 + ')'
-
 const communityBgResult = ref('none')
-
 const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
 
 const handleOpinion = (index) => { // 点击每个主张
@@ -172,26 +177,44 @@ const handleMiddleImage = (index) => { // 点击中心图片
         }
         .item_content{
           position: relative;
-          height: 500px;
-          .click_image{
+          height: 800px;
+          .touch_box{
             position: absolute;
-            width: 150px;
             top: 350px;
             left: 50%;
             transform: translate(-50%, 0);
             z-index: 10;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .touch_image{
+              width: 150px;
+            }
+            .touch_text{
+              margin: -40px 0 0 -20px;
+              height: 30px;
+              line-height: 30px;
+              color: #333333;
+              font-size: 30px;
+              font-family: "SourceHanSansSC-Medium", "HYQiHei-60S";
+              font-weight: normal;
+            }
           }
+        }
+        .research_image{
+          margin: 0 auto;
+          width: 465px;
         }
       }
     }
     .opinion_type{
       position: absolute;
       width: 100%;
-      top: 75%;
+      top: 80%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
       .each_opinion{
         margin: 0 3%;
         padding-top: 28px;
@@ -204,12 +227,13 @@ const handleMiddleImage = (index) => { // 点击中心图片
         color: #333333;
         font-size: 28px;
         font-weight: normal;
-        font-family: "VWText-Regular","HYQiHei-60S";
+        font-family: "SourceHanSansSC-Medium","HYQiHei-60S";
       }
       .activeOpinion{
         color: rgba(244,195,56, 1);
         font-size: 29px;
-        font-weight: bold;
+        font-weight: 600;
+        border-bottom: 2px solid rgba(244,195,56, 1);
       }
     }
   }

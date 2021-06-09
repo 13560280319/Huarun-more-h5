@@ -13,7 +13,7 @@
       </div> -->
       <p class="more">More+</p>
       <p class="type">优居生活</p>
-      <p class="part">PART 03</p>
+      <!-- <p class="part">PART 03</p> -->
       <p class="text1">
         后疫情时代，人们对“家”的意义发生了观念转变，更多时候会思考：如何在家里度过日常生活，以及如何与与家人、朋友和自己相处得更好。未来，我们的家将会变得更灵活、更健康、更有意思、更周到。
       </p>
@@ -71,18 +71,18 @@
     //   }
     // }
     .more{
-      height: 145px;
-      line-height: 145px;
-      font-size: 145px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 100px;
       font-family: 'SourceHanSansSC-Bold';
       font-weight: 600;
       color: rgba(255, 255, 255, 1);
     }
     .type{
-      margin-top: 45px;
-      height: 155px;
-      line-height: 155px;
-      font-size: 155px;
+      margin-top: 22.5px;
+      height: 118px;
+      line-height: 118px;
+      font-size: 118px;
       font-family: 'Orkney-Bold';
       font-weight: 600;
       color: rgb(35,24,21);

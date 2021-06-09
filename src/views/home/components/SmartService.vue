@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="opinion_type">
-        <div v-for="(item, index) in props.opinionArray" :key="index" @click="handleOpinion(index)">{{ item.name }}</div>
+        <div :class="{ activeOpinion: shimIndex === index }" class="each_opinion" v-for="(item, index) in props.opinionArray" :key="index" @click="handleOpinion(index)">{{ item.name }}</div>
       </div>
     </div>
   </div>
@@ -150,24 +150,30 @@ const handleOpinion = (index) => {
     .opinion_type{
       position: absolute;
       width: 100%;
-      top: 80%;
+      top: 85%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-between;
-      div{
+      justify-content: center;
+      .each_opinion{
         margin: 0 3%;
         padding-top: 28px;
         width: 27%;
         height: 115px;
         line-height: 87px;
         text-align: center;
-        border-bottom: 1px solid #444;
+        border-bottom: 1px solid #333333;
         box-sizing: border-box;
-        color: #444;;
+        color: #333333;
         font-size: 28px;
         font-weight: normal;
-        font-family: "VWText-Regular","HYQiHei-60S";
+        font-family: "SourceHanSansSC-Medium","HYQiHei-60S";
+      }
+      .activeOpinion{
+        color: rgba(244,195,56, 1);
+        font-size: 29px;
+        font-weight: 600;
+        border-bottom: 2px solid rgba(244,195,56, 1);
       }
     }
   }

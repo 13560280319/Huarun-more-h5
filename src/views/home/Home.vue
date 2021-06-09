@@ -11,7 +11,7 @@
               </dl>
             </div>
           </div>
-          <DownArrow></DownArrow>
+          <DownArrow @click="handleBottomArrow"></DownArrow>
         </div>
       </swiper-slide>
       <swiper-slide>
@@ -51,9 +51,11 @@ import CityOpinion from '@/views/home/components/CityOpinion.vue'
 import BeautifulCommunity from '@/views/home/components/BeautifulCommunity.vue'
 import OptimalLive from '@/views/home/components/OptimalLive.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
+import { SET_ACTIVE_SWIPER } from '@/store/mutation-types'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
 import { onMounted } from 'vue'
+import { useStore } from 'vuex'
 export default {
   components: {
     Swiper,
@@ -130,11 +132,17 @@ export default {
     }
   },
   setup () {
+    const store = useStore()
     let swiper = null
     onMounted(() => {
       swiper = document.querySelector('.swiper-container').swiper
     })
-    const onSlideChangeTransitionEnd = (swiper) => {}
+    const handleBottomArrow = () => {
+      swiper.slideTo(1)
+    }
+    const onSlideChangeTransitionEnd = (swiper) => { // 监听每次滑动 swiper 结束
+      store.commit(SET_ACTIVE_SWIPER, swiper.activeIndex)
+    }
     const handleEachOpinion = (index) => {
       switch (index) {
         case 0:
@@ -153,6 +161,7 @@ export default {
     }
 
     return {
+      handleBottomArrow,
       onSlideChangeTransitionEnd,
       handleEachOpinion
     }
@@ -167,14 +176,15 @@ export default {
     overflow: hidden;
     height: 100%;
     background-image: url('./../../assets/homePage.gif');
-    background-size: 100%;
+    background-size: 100% 103%;
     background-repeat: no-repeat;
     .opinion_box{
       position: absolute;
       top: 72%;
       width: 100%;
       .opinion_content{
-        width: 100%;
+        margin: 0 auto;
+        width: 92%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -190,7 +200,7 @@ export default {
             color: #333333;
           }
           dd{
-            margin-top: 16px;
+            margin-top: 17px;
             height: 12px;
             line-height: 12px;
             text-align: center;

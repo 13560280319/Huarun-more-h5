@@ -13,7 +13,7 @@
       </div> -->
       <p class="more">More+</p>
       <p class="type">美好社区</p>
-      <p class="part">PART 02</p>
+      <!-- <p class="part">PART 02</p> -->
       <p class="text1">
         个人边界感愈发明显的城市中，生活在一个温暖舒适并能享受趣味的美好社区，已成为大多数人的向往。在那里，人们有更多机会交流互动，体会到城市压力之外的生活乐趣。
       </p>
@@ -70,19 +70,19 @@
     //     }
     //   }
     // }
-      .more{
-      height: 145px;
-      line-height: 145px;
-      font-size: 145px;
+    .more{
+      height: 100px;
+      line-height: 100px;
+      font-size: 100px;
       font-family: 'SourceHanSansSC-Bold';
       font-weight: 600;
       color: rgba(255, 255, 255, 1);
     }
     .type{
-      margin-top: 45px;
-      height: 155px;
-      line-height: 155px;
-      font-size: 155px;
+      margin-top: 22.5px;
+      height: 118px;
+      line-height: 118px;
+      font-size: 118px;
       font-family: 'Orkney-Bold';
       font-weight: 600;
       color: rgb(35,24,21);

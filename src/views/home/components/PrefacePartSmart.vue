@@ -13,7 +13,7 @@
       </div> -->
       <p class="more">More+</p>
       <p class="type">智慧服务</p>
-      <p class="part">PART 04</p>
+      <!-- <p class="part">PART 04</p> -->
       <p class="text1">
         比关怀更好的，是真实地给予。
       </p>
@@ -74,18 +74,18 @@
     //   }
     // }
     .more{
-      height: 145px;
-      line-height: 145px;
-      font-size: 145px;
+      height: 100px;
+      line-height: 100px;
+      font-size: 100px;
       font-family: 'SourceHanSansSC-Bold';
       font-weight: 600;
       color: rgba(255, 255, 255, 1);
     }
     .type{
-      margin-top: 45px;
-      height: 155px;
-      line-height: 155px;
-      font-size: 155px;
+      margin-top: 22.5px;
+      height: 118px;
+      line-height: 118px;
+      font-size: 118px;
       font-family: 'Orkney-Bold';
       font-weight: 600;
       color: rgb(35,24,21);
