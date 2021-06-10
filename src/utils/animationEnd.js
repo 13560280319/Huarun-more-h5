@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 export const animateCSS = (querySelectorAll, animationList = [], eleIndex = 0, removeAnimation = false, allElements = false) => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     const node = document.querySelectorAll(querySelectorAll)
 
     if (allElements) {
@@ -25,4 +25,28 @@ export const animateCSS = (querySelectorAll, animationList = [], eleIndex = 0, r
 
     node[eleIndex].addEventListener('animationend', handleAnimationEnd, { once: true })
   })
+}
+
+export const dealRemoveClass = (eleSelector, oSelector, allElements = false) => {
+  if (allElements) {
+    const animateDomList = document.querySelectorAll(eleSelector)
+    for (const item of animateDomList) {
+      item.classList.remove(oSelector)
+    }
+  } else {
+    const animateDom = document.querySelector(eleSelector)
+    animateDom.classList.remove(oSelector)
+  }
+}
+
+export const dealAddClass = (eleSelector, oSelector, allElements = false) => {
+  if (allElements) {
+    const animateDomList = document.querySelectorAll(eleSelector)
+    for (const item of animateDomList) {
+      item.classList.add(oSelector)
+    }
+  } else {
+    const animateDom = document.querySelector(eleSelector)
+    animateDom.classList.add(oSelector)
+  }
 }

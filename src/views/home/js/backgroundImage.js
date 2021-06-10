@@ -1,3 +1,8 @@
+import cityXu from '@/assets/xu1.gif'
+import communityXu from '@/assets/xu2.gif'
+import liveXu from '@/assets/xu3.gif'
+import smartXu from '@/assets/xu4.gif'
+
 // 功能模块
 import lingliketing from '@/assets/lingliketing.png'
 import yixiangzhidi from '@/assets/yixiangzhidi.png'
@@ -25,6 +30,10 @@ import woshi from '@/assets/woshi.png'
 import yangtai from '@/assets/yangtai.png'
 
 export {
+  cityXu,
+  communityXu,
+  liveXu,
+  smartXu,
   anquan2,
   kongzhonghuayuan2,
   renxinghua1,

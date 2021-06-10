@@ -35,11 +35,19 @@ const imageLoad = () => {
 const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex) // 监听当前第几页
 watch(endSwiperIndex, (newVal) => {
   switch (newVal) {
-    case 13:
+    case 1:
       Promise.all([imagePromise]).then(() => {
         setTimeout(() => {
           animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
-        }, 1200)
+        }, 1850)
+      })
+      break
+    case 3:
+      Promise.all([imagePromise]).then(() => {
+        setTimeout(() => {
+          alert('6666')
+          animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
+        }, 1850)
       })
       break
   }
@@ -85,13 +93,13 @@ watch(endSwiperIndex, (newVal) => {
       color: rgb(35,24,21);
     }
     .text1{
-      margin-top: 500px;
-      font-size: 28px;
+      margin-top: 480px;
+      font-size: 30px;
       font-family: "VWText-Light","HYQiHei-40S";
       font-weight: normal;
     }
     .text2{
-      margin-top: 70px;
+      margin-top: 60px;
     }
   }
 }

@@ -114,8 +114,8 @@ const communityBgUrl0 = 'url(' + communityBg + ')' // 背景图片变量
 const communityBgResult = ref('none')
 const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
 
-const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
-watch(currentSwiperIndex, (newVal) => {
+const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex) // 监听当前第几页
+watch(endSwiperIndex, (newVal) => {
   if (newVal === 4) {
     animateCSS('.oneAnimation', ['animate__fadeInDown'], 0, true)
   }

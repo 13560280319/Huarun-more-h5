@@ -23,8 +23,8 @@ import { computed, watch } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
-const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
-watch(currentSwiperIndex, (newVal) => {
+const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex) // 监听当前第几页
+watch(endSwiperIndex, (newVal) => {
   if (newVal === 4) {
     animateCSS('.threeImageAnimate', ['animate__fadeInDown'], 0, true)
   }

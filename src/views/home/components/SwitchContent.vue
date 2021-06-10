@@ -1,7 +1,7 @@
 <template>
   <div class="overlay_inner">
     <div class="overlay_content">
-      <div class="title switchTitle">{{ propsObj.overlayData.title[currentIndex] }}</div>
+      <div ref="switchTitleDom" class="title invisible switchTitle">{{ propsObj.overlayData.title[currentIndex] }}使用！</div>
       <div class="image_box">
         <img class="full_img" :src="propsObj.overlayData.image[currentIndex]" alt="">
       </div>
@@ -20,7 +20,7 @@
 <script setup>
 import { defineProps, ref, nextTick, computed, watch } from 'vue'
 import { useStore } from 'vuex'
-import { animateCSS } from '@/utils/animationEnd'
+import { animateCSS, dealAddClass, dealRemoveClass } from '@/utils/animationEnd'
 
 const store = useStore()
 const currentIndex = ref(0)
@@ -28,8 +28,13 @@ const propsObj = defineProps({
   overlayData: Object
 })
 
-const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
-watch(currentSwiperIndex, (newVal) => {
+const startSwiperIndex = computed(() => store.state.startActiveSwiperIndex)
+const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
+watch(startSwiperIndex, (newVal) => {
+  dealAddClass('.switchTitle', 'invisible', true)
+})
+watch(endSwiperIndex, (newVal) => {
+  dealRemoveClass('.switchTitle', 'invisible', true)
   animateCSS('.switchTitle', ['animate__fadeInDown'], 0, true, true)
 })
 

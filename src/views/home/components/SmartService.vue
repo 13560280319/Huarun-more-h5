@@ -75,7 +75,7 @@
   </div>
 </template>
 <script setup>
-import { animateCSS } from '@/utils/animationEnd'
+import { animateCSS, dealAddClass } from '@/utils/animationEnd'
 import { computed, defineProps, nextTick, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
@@ -85,9 +85,13 @@ const props = defineProps({
 })
 const shimIndex = ref(0)
 
-const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
-watch(currentSwiperIndex, (newVal) => {
-  if (newVal === 8) {
+const startSwiperIndex = computed(() => store.state.startActiveSwiperIndex)
+const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
+watch(startSwiperIndex, (newVal) => {
+  dealAddClass('.smartAnimation', 'invisible', true)
+})
+watch(endSwiperIndex, (newVal) => {
+  if (newVal === 14) {
     animateCSS('.smartAnimation', ['animate__fadeInDown'], 0, true, true)
   }
 })
