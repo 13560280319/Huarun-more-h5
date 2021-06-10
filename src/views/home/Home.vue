@@ -5,7 +5,7 @@
     @slideChangeTransitionStart="onSlideChangeTransitionStart">
       <swiper-slide>
         <div class="swiper1">
-          <div v-if="true" class="opinion_box">
+          <div v-if="false" class="opinion_box">
             <div class="opinion_content">
               <dl v-for="(item, index) of opinionList" :key="index" @click="handleEachOpinion(index)">
                 <dt>{{ item.tag }}</dt>
