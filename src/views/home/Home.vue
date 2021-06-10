@@ -26,33 +26,41 @@
         <!-- 美好社区序 -->
         <PrefacePartCommunity></PrefacePartCommunity>
       </swiper-slide>
-      <!-- 美好社区 -->
-      <!-- <swiper-slide>
-        <BeautifulCommunity></BeautifulCommunity>
-      </swiper-slide> -->
       <swiper-slide>
-        <!-- 三张图片 -->
-        <ThreeImageCommunity></ThreeImageCommunity>
+        <!-- 美好社区--三张图片 -->
+        <BeautifulCommunityFirst></BeautifulCommunityFirst>
       </swiper-slide>
       <swiper-slide>
         <!-- 美好社区--功能模块 -->
-        <OverlayInnerCommunity :overlayData="functionData"></OverlayInnerCommunity>
+        <SwitchContent :overlayData="functionData"></SwitchContent>
       </swiper-slide>
       <swiper-slide>
         <!-- 美好社区--幸福归家路 -->
-        <OverlayInnerCommunity :overlayData="happinessData"></OverlayInnerCommunity>
+        <SwitchContent :overlayData="happinessData"></SwitchContent>
       </swiper-slide>
       <swiper-slide>
         <!-- 美好社区--优居研究所 -->
-        <OverlayInnerCommunity :overlayData="graduateData"></OverlayInnerCommunity>
+        <SwitchContent :overlayData="graduateData"></SwitchContent>
       </swiper-slide>
       <swiper-slide>
         <!-- 优居生活序 -->
         <PrefacePartLive></PrefacePartLive>
       </swiper-slide>
       <swiper-slide>
-        <!-- 优居生活 -->
-        <OptimalLive></OptimalLive>
+        <!-- 优居生活--两张图片 -->
+        <OptimalLiveFirst></OptimalLiveFirst>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- 优居生活（卧室+阳台） -->
+        <SwitchContent :overlayData="bedroomBalcony"></SwitchContent>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- 优居生活（客厅 + 餐厨） -->
+        <SwitchContent :overlayData="livingKitchen"></SwitchContent>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- 优居生活（卫浴 + 收纳） -->
+        <SwitchContent :overlayData="bathroomStorage"></SwitchContent>
       </swiper-slide>
       <swiper-slide>
         <!-- 智慧服务序 -->
@@ -72,11 +80,10 @@ import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
 import PrefacePartLive from '@/views/home/components/PrefacePartLive.vue'
 import PrefacePartCommunity from '@/views/home/components/PrefacePartCommunity.vue'
 import CityOpinion from '@/views/home/components/CityOpinion.vue'
-import BeautifulCommunity from '@/views/home/components/BeautifulCommunity.vue'
-import OptimalLive from '@/views/home/components/OptimalLive.vue'
+import OptimalLiveFirst from '@/views/home/components/OptimalLiveFirst.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
-import OverlayInnerCommunity from '@/views/home/components/OverlayInnerCommunity.vue'
-import ThreeImageCommunity from '@/views/home/components/ThreeImageCommunity.vue'
+import BeautifulCommunityFirst from '@/views/home/components/BeautifulCommunityFirst.vue'
+import SwitchContent from '@/views/home/components/SwitchContent.vue'
 import { SET_ACTIVE_SWIPER } from '@/store/mutation-types'
 import * as imageList from './js/backgroundImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -93,11 +100,10 @@ export default {
     PrefacePartLive,
     PrefacePartSmart,
     CityOpinion,
-    BeautifulCommunity,
-    OverlayInnerCommunity,
-    ThreeImageCommunity,
-    OptimalLive,
-    SmartService
+    BeautifulCommunityFirst,
+    SmartService,
+    OptimalLiveFirst,
+    SwitchContent
   },
   data () {
     return {
@@ -193,7 +199,7 @@ export default {
       graduateData: { // 美好社区--优居研究所数据
         title: [
           '社群生活圈，提升幸福指数。',
-          '理想小“社会”， 实现“半径生活梦”。',
+          '理想“小社会”， 实现“半径生活梦”。',
           '活跃在景观中的互动，连接人地关系。'
         ],
         image: [
@@ -202,6 +208,39 @@ export default {
           imageList.renjiguanxi
         ],
         name: ['生活圈', '生活梦', '人际关系']
+      },
+      bedroomBalcony: { // 优居生活--（卧室 + 阳台）数据
+        title: [
+          '卧室，每一平方都带有温度。',
+          '阳台，给自己一个会呼吸的能量场。'
+        ],
+        image: [
+          imageList.woshi,
+          imageList.yangtai
+        ],
+        name: ['卧室', '阳台']
+      },
+      livingKitchen: { // 优居生活--（客厅 + 餐厨）数据
+        title: [
+          '多功能客厅，随意切换多种生活场景，情感交流无障碍。',
+          '开放式厨房连接岛台餐厨，打开心扉拒绝“社恐症”。'
+        ],
+        image: [
+          imageList.keting,
+          imageList.canchu
+        ],
+        name: ['客厅', '餐厨']
+      },
+      bathroomStorage: { // 优居生活--（卫浴 + 收纳）数据
+        title: [
+          '干湿分离式卫浴，让居住多一份舒适。',
+          '全屋收纳，腾出更多空间留给家人相处。'
+        ],
+        image: [
+          imageList.weiyu,
+          imageList.shouna
+        ],
+        name: ['卫浴', '收纳']
       }
     }
   },
@@ -226,10 +265,10 @@ export default {
           swiper.slideTo(3)
           break
         case 2:
-          swiper.slideTo(5)
+          swiper.slideTo(8)
           break
         case 3:
-          swiper.slideTo(7)
+          swiper.slideTo(13)
           break
       }
     }

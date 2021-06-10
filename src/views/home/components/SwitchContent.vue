@@ -1,15 +1,13 @@
 <template>
   <div class="overlay_inner">
     <div class="overlay_content">
-      <div class="title innerAnimationCommunity">{{ propsObj.overlayData.title[currentIndex] }}</div>
+      <div class="title switchTitle">{{ propsObj.overlayData.title[currentIndex] }}</div>
       <div class="image_box">
         <img class="full_img" :src="propsObj.overlayData.image[currentIndex]" alt="">
       </div>
     </div>
-    <!-- 美好社区二级主张 -->
     <div class="opinion_type">
-      <div
-        class="each_opinion"
+      <div class="each_opinion"
         :class="{
           activeOpinion: currentIndex === index,
           fourList: propsObj.overlayData.name.length === 4
@@ -32,15 +30,13 @@ const propsObj = defineProps({
 
 const currentSwiperIndex = computed(() => store.state.activeSwiperIndex) // 监听当前第几页
 watch(currentSwiperIndex, (newVal) => {
-  if (newVal === 5 || newVal === 6 || newVal === 7) {
-    animateCSS('.innerAnimationCommunity', ['animate__fadeInDown'], 0, true, true)
-  }
+  animateCSS('.switchTitle', ['animate__fadeInDown'], 0, true, true)
 })
 
 const handleOpinion = (index) => { // 点击每个主张
   currentIndex.value = index
   nextTick(() => {
-    animateCSS('.innerAnimationCommunity', ['animate__fadeInDown'], 0, true, true)
+    animateCSS('.switchTitle', ['animate__fadeInDown'], 0, true, true)
   })
 }
 </script>
@@ -61,7 +57,7 @@ const handleOpinion = (index) => { // 点击每个主张
       font-weight: normal;
     }
     .image_box{
-      margin-top: 180px;
+      margin-top: 120px;
       padding: 0 100px;
       box-sizing: border-box;
     }

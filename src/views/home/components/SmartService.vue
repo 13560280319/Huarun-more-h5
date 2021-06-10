@@ -33,7 +33,7 @@
           <!-- <div class="title smartAnimation">{{ props.opinionArray[1].title }}</div> -->
           <div class="explain smartAnimation">{{  props.opinionArray[1].explain }}</div>
           <div class="description smartAnimation">{{  props.opinionArray[1].description }}</div>
-          <div class="image_box">
+          <div class="image_box image_two">
             <div class="top_image">
               <img class="full_img" src="./../../../assets/1000.png" alt="">
             </div>
@@ -46,22 +46,22 @@
           <!-- <div class="title smartAnimation">{{ props.opinionArray[2].title }}</div> -->
           <div class="explain smartAnimation">{{  props.opinionArray[2].explain }}</div>
           <div class="description smartAnimation">{{  props.opinionArray[2].description }}</div>
-          <div class="image_box">
+          <div class="image_box image_three">
             <div class="imgage_content">
-              <div class="each_img">
+              <div class="service_img">
                 <img class="full_img" src="./../../../assets/2001.png" alt="">
               </div>
-              <div style="background: #fff" class="each_img"></div>
-              <div style="background: #fff" class="each_img"></div>
-              <div class="each_img">
+              <div style="background: #fff" class="service_img"></div>
+              <div style="background: #fff" class="service_img"></div>
+              <div class="service_img">
                 <img class="full_img" src="./../../../assets/2002.png" alt="">
               </div>
-              <div class="each_img">
+              <div class="service_img">
                 <img class="full_img" src="./../../../assets/2003.png" alt="">
               </div>
-              <div style="background: #fff" class="each_img"></div>
-              <div style="background: #fff" class="each_img"></div>
-              <div class="each_img">
+              <div style="background: #fff" class="service_img"></div>
+              <div style="background: #fff" class="service_img"></div>
+              <div class="service_img">
                 <img class="full_img" src="./../../../assets/2004.png" alt="">
               </div>
             </div>
@@ -115,7 +115,7 @@ const handleOpinion = (index) => {
         font-weight: normal;
       }
       .explain{
-        margin-top: 70px;
+        margin-top: 55px;
         padding-left: 40px;
         height: 32px;
         line-height: 32px;
@@ -134,10 +134,8 @@ const handleOpinion = (index) => {
         font-weight: normal;
       }
       .image_box{
-        margin-top: 10px;
-        height: 700px;
+        margin-top: 22px;
         padding: 0 22px;
-        overflow-y: scroll;
         .imgage_content{
           display: flex;
           flex-direction: row;
@@ -145,8 +143,11 @@ const handleOpinion = (index) => {
           justify-content: space-between;
           box-sizing: border-box;
           .each_img{
-            margin-top: 35px;
-            width: 335px;
+            margin-top: 20px;
+            width: 300px;
+          }
+          .service_img{
+            width: 50%;
           }
         }
         .top_image, .bottom_image{
@@ -157,11 +158,17 @@ const handleOpinion = (index) => {
           margin-top: 22px;
         }
       }
+      .image_two{
+        margin-top: 60px;
+      }
+      .image_three{
+        margin-top: 40px;
+      }
     }
     .opinion_type{
       position: absolute;
       width: 100%;
-      top: 85%;
+      bottom: 3.5%;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;

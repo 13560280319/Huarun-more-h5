@@ -26,17 +26,16 @@
     </div>
     <Overlay :show="showOptimalOverlay ">
       <OverlayInner :overlayData="
-        overlayTag === 1 ? functionData : // 功能模块数据
-        overlayTag === 2 ? happinessData : // 幸福归家路数据
-        overlayTag === 3 ? graduateData : '' // 优居研究所数据
+        overlayTag === 1 ? bedroomBalcony : // 功能模块数据
+        overlayTag === 2 ? livingKitchen : // 幸福归家路数据
+        overlayTag === 3 ? bathroomStorage : '' // 优居研究所数据
       "></OverlayInner>
     </Overlay>
   </div>
 </template>
 <script setup>
-import OverlayInner from './../components/OverlayInner.vue'
-import communityBg0 from './../../../assets/usually.png'
-import communityBg1 from './../../../assets/kk11.jpg'
+import OverlayInner from './OverlayInner.vue'
+import communityBg from ''
 import { ref, computed, nextTick } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
@@ -59,7 +58,7 @@ const communityTitleList = [
 
 const overlayTag = ref(null) // overlay 数据切换标志
 
-const functionData = { // 功能模块数据
+const bedroomBalcony = { // （卧室 + 阳台）数据
   title: [
     '卧室，每一平方都带有温度。',
     '阳台，给自己一个会呼吸的能量场。'
@@ -71,7 +70,7 @@ const functionData = { // 功能模块数据
   name: ['卧室', '阳台']
 }
 
-const happinessData = { // 幸福归家路数据
+const livingKitchen = { // （客厅 + 餐厨）数据
   title: [
     '多功能客厅，随意切换多种生活场景，情感交流无障碍。',
     '开放式厨房连接岛台餐厨，打开心扉拒绝“社恐症”。'
@@ -82,7 +81,7 @@ const happinessData = { // 幸福归家路数据
   ],
   name: ['客厅', '餐厨']
 }
-const graduateData = { // 优居研究所数据
+const bathroomStorage = { // （卫浴 + 收纳）数据
   title: [
     '干湿分离式卫浴，让居住多一份舒适。',
     '全屋收纳，腾出更多空间留给家人相处。'
@@ -95,8 +94,7 @@ const graduateData = { // 优居研究所数据
 }
 
 const shimIndex = ref(0)
-const communityBgUrl0 = 'url(' + communityBg0 + ')' // 背景图片变量
-const communityBgUrl1 = 'url(' + communityBg1 + ')'
+const communityBgUrl0 = 'url(' + communityBg + ')' // 背景图片变量
 
 const communityBgResult = ref('none')
 

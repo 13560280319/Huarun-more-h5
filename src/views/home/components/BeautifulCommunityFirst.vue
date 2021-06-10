@@ -3,12 +3,13 @@
     <div class="opinion_box">
       <div class="opinion_content">
         <div class="opinion_item">
-          <p class="min_title threeImageAnimate">谁经常在社区活动？</p>
+          <p class="first_title threeImageAnimate">谁经常在社区活动？</p>
           <div class="research_top_img"></div>
-          <div class="research_bottom_img">
+          <div class="research_buttom_img"></div>
+          <div class="research_importance_img">
             <img class="full_img" src="./../../../assets/3001.png" alt="">
           </div>
-          <div class="research_image">
+          <div class="research_trajectory_img">
             <img class="full_img" src="./../../../assets/yanjiuguiji.png" alt="">
           </div>
         </div>
@@ -41,8 +42,8 @@ watch(currentSwiperIndex, (newVal) => {
       overflow: hidden;
       .opinion_item{
         padding: 25px 20px 0;
-        .min_title{
-          margin: 20px 0 0 20px;
+        .first_title{
+          margin: 60px 0 0 30px;
           height: 40px;
           line-height: 40px;
           font-size: 40px;
@@ -51,17 +52,31 @@ watch(currentSwiperIndex, (newVal) => {
           color: rgb(35,24,21);
         }
         .research_top_img{
-          margin: 0 auto;
+          margin: 25px auto 0;
           width: 400px;
-          height: 400px;
+          height: 150px;
           background-image: url(./../../../assets/bing1.gif);
-          background-position: -50px -280px;
-          background-size: 100%;
+          background-position: -150px -398px;
+          background-size: 140%;
           background-repeat: no-repeat;
         }
-        .research_bottom_img{
-          margin: 30px auto;
+        .research_buttom_img{
+          margin: -10px auto;
           width: 400px;
+          height: 150px;
+          background-image: url(./../../../assets/bing1.gif);
+          background-position: -150px -808px;
+          background-size: 140%;
+          background-repeat: no-repeat;
+        }
+        .research_importance_img{
+          margin: 10px auto;
+          width: 400px;
+        }
+        .research_trajectory_img{
+          margin: 0 auto;
+          width: 95%;
+          height: 300px;
         }
       }
     }

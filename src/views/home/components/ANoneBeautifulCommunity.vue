@@ -43,12 +43,11 @@
   </div>
 </template>
 <script setup>
-import OverlayInner from './../components/OverlayInner.vue'
-import communityBg0 from './../../../assets/usually.png'
-import communityBg1 from './../../../assets/kk11.jpg'
+import OverlayInner from './OverlayInner.vue'
+import communityBg from ''
 import { animateCSS } from '@/utils/animationEnd'
 import { SET_COMMUNITY_OVERLAY } from '@/store/mutation-types'
-import * as imageList from './../js/backgroundImage'
+import * as imageList from '../js/backgroundImage'
 import { ref, computed, nextTick, watch } from 'vue'
 import { useStore } from 'vuex'
 import { Overlay } from 'vant'
@@ -111,8 +110,7 @@ const graduateData = { // 优居研究所数据
 }
 
 const shimIndex = ref(0)
-const communityBgUrl0 = 'url(' + communityBg0 + ')' // 背景图片变量
-const communityBgUrl1 = 'url(' + communityBg1 + ')'
+const communityBgUrl0 = 'url(' + communityBg + ')' // 背景图片变量
 const communityBgResult = ref('none')
 const showCommunityOverlay = computed(() => store.state.showCommunityOverlay)
 
