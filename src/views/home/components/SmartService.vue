@@ -75,7 +75,7 @@
   </div>
 </template>
 <script setup>
-import { animateCSS, dealAddClass } from '@/utils/animationEnd'
+import { animateCSS, dealAddClass, dealRemoveClass } from '@/utils/animationEnd'
 import { computed, defineProps, nextTick, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 
@@ -92,6 +92,7 @@ watch(startSwiperIndex, (newVal) => {
 })
 watch(endSwiperIndex, (newVal) => {
   if (newVal === 14) {
+    dealRemoveClass('.smartAnimation', 'invisible', true)
     animateCSS('.smartAnimation', ['animate__fadeInDown'], 0, true, true)
   }
 })

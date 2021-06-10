@@ -1,7 +1,7 @@
 <template>
   <div class="overlay_inner">
     <div class="overlay_content">
-      <div ref="switchTitleDom" class="title invisible switchTitle">{{ propsObj.overlayData.title[currentIndex] }}使用！</div>
+      <div class="title invisible switchTitle">{{ propsObj.overlayData.title[currentIndex] }}使用！</div>
       <div class="image_box">
         <img class="full_img" :src="propsObj.overlayData.image[currentIndex]" alt="">
       </div>
