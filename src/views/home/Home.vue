@@ -3,9 +3,17 @@
     <swiper :direction="'vertical'"
     @slideChangeTransitionEnd="onSlideChangeTransitionEnd"
     @slideChangeTransitionStart="onSlideChangeTransitionStart">
+      <!-- loading 页面 -->
       <swiper-slide>
-        <div class="swiper1">
-          <div v-if="false" class="opinion_box">
+        <div class="swiper0">
+          <img class="loading_img" src="./../../assets/loading.gif">
+        </div>
+      </swiper-slide>
+
+      <!-- 首页 -->
+      <swiper-slide>
+        <div v-if="reverseHome" class="swiper1">
+          <!-- <div class="opinion_box">
             <div class="opinion_content">
               <dl v-for="(item, index) of opinionList" :key="index" @click="handleEachOpinion(index)">
                 <dt>{{ item.tag }}</dt>
@@ -13,8 +21,11 @@
               </dl>
             </div>
           </div>
-          <div class="get_live" @click="handleBottomArrow">点击探索美好生活</div>
-          <DownArrow @click="handleBottomArrow"></DownArrow>
+          <div class="click_down" @click="handleBottomArrow">点击探索美好生活</div>
+          <DownArrow @click="handleBottomArrow"></DownArrow> -->
+          <div class="click_down">
+            <img class="down_gif" src="./../../assets/touchBottom.gif" alt="">
+          </div>
         </div>
       </swiper-slide>
 
@@ -24,9 +35,9 @@
       </swiper-slide>
 
       <!-- 城市主张 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <CityOpinion :opinionArray="cityOpinionList"></CityOpinion>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 美好社区--序 -->
       <swiper-slide>
@@ -34,24 +45,24 @@
       </swiper-slide>
 
       <!-- 美好社区--三张图片 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <BeautifulCommunityFirst></BeautifulCommunityFirst>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 美好社区--功能模块 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="functionData"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 美好社区--幸福归家路 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="happinessData"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 美好社区--优居研究所 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="graduateData"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 优居生活--序 -->
       <swiper-slide>
@@ -59,34 +70,38 @@
       </swiper-slide>
 
       <!-- 优居生活--两张图片 -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <OptimalLiveFirst></OptimalLiveFirst>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 优居生活（卧室+阳台） -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="bedroomBalcony"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 优居生活（客厅 + 餐厨） -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="livingKitchen"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 优居生活（卫浴 + 收纳） -->
-      <swiper-slide>
+      <!-- <swiper-slide>
         <SwitchContent :overlayData="bathroomStorage"></SwitchContent>
-      </swiper-slide>
+      </swiper-slide> -->
 
       <!-- 智慧服务--序 -->
       <swiper-slide>
         <PrefacePartSmart :prefacePartData="prefacePartList.smartPreface" contentClass="smartPreface"></PrefacePartSmart>
       </swiper-slide>
 
-      <!-- 智慧服务 -->
       <swiper-slide>
-        <SmartService :opinionArray="SmartServiceList"></SmartService>
+        <OneImage></OneImage>
       </swiper-slide>
+
+      <!-- 智慧服务 -->
+      <!-- <swiper-slide>
+        <SmartService :opinionArray="SmartServiceList"></SmartService>
+      </swiper-slide> -->
     </swiper>
   </div>
 </template>
@@ -101,11 +116,12 @@ import OptimalLiveFirst from '@/views/home/components/OptimalLiveFirst.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
 import BeautifulCommunityFirst from '@/views/home/components/BeautifulCommunityFirst.vue'
 import SwitchContent from '@/views/home/components/SwitchContent.vue'
+import OneImage from '@/views/home/components/OneImage.vue'
 import { SET_END_SWIPER_INDEX, SET_START_SWIPER_INDEX } from '@/store/mutation-types'
 import * as imageList from './js/backgroundImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 export default {
   components: {
@@ -120,7 +136,8 @@ export default {
     BeautifulCommunityFirst,
     SmartService,
     OptimalLiveFirst,
-    SwitchContent
+    SwitchContent,
+    OneImage
   },
   data () {
     return {
@@ -133,22 +150,26 @@ export default {
       prefacePartList: {
         cityPreface: {
           title: '城市理想',
+          part: 'PART 01',
           text1: '当城市的一切想象均已落地，所形成的是代言“未来生活方式”的空间，人们在这里聚焦情感和满足需求。',
           text2: '争流而上的广州，正在为人们的新日常与生活体验感，加速蜕变。',
           backGif: imageList.cityXu
         },
         communityPreface: {
           title: '美好社区',
+          part: 'PART 02',
           text1: '个人边界感愈发明显的城市中，生活在一个温暖舒适并能享受趣味的美好社区，已成为大多数人的向往。在那里，人们有更多机会交流互动，体会到城市压力之外的生活乐趣。',
           backGif: imageList.communityXu
         },
         livePreface: {
           title: '优居生活',
+          part: 'PART 03',
           text1: '后疫情时代，人们对“家”的意义发生了观念转变，更多时候会思考：如何在家里度过日常生活，以及如何与与家人、朋友和自己相处得更好。未来，我们的家将会变得更灵活、更健康、更有意思、更周到。',
           backGif: imageList.liveXu
         },
         smartPreface: {
           title: '智慧服务',
+          part: 'PART 04',
           text1: '比关怀更好的，是真实地给予。',
           text2: '华润置地广州从情感悉心服务开始，为人们带来更智慧、更便捷的生活，让更多人看见“生活会更好”的可能性。',
           backGif: imageList.smartXu
@@ -288,18 +309,31 @@ export default {
   setup () {
     const store = useStore()
     let swiper = null
+    const reverseHome = ref(false)
+
     onMounted(() => {
       swiper = document.querySelector('.swiper-container').swiper
+      swiper.disable()
+      setTimeout(() => {
+        swiper.enabled = true // 解决 swiper.enabled is not a function 报错
+        reverseHome.value = true
+        swiper.slideTo(1)
+        swiper.removeSlide(0)
+      }, 6000)
     })
+
     const handleBottomArrow = () => {
-      swiper.slideTo(1)
+      swiper.slideTo(2)
     }
+
     const onSlideChangeTransitionStart = (swiper) => { // 监听每次滑动 swiper 开始
       store.commit(SET_START_SWIPER_INDEX, swiper.activeIndex)
     }
+
     const onSlideChangeTransitionEnd = (swiper) => { // 监听每次滑动 swiper 结束
       store.commit(SET_END_SWIPER_INDEX, swiper.activeIndex)
     }
+
     const handleEachOpinion = (index) => {
       switch (index) {
         case 0:
@@ -316,7 +350,9 @@ export default {
           break
       }
     }
+
     return {
+      reverseHome,
       handleBottomArrow,
       onSlideChangeTransitionStart,
       onSlideChangeTransitionEnd,
@@ -328,12 +364,19 @@ export default {
 <style lang="less" scoped>
 .swiper_box{
   height: 100%;
+  .swiper0{
+    width: 100%;
+    .loading_img{
+      margin-top: -115px;
+      width: 100%;
+    }
+  }
   .swiper1{
     position: relative;
     overflow: hidden;
     height: 100%;
     background-image: url('./../../assets/homePage.gif');
-    background-size: 100% 103%;
+    background-size: 100%;
     background-repeat: no-repeat;
     .opinion_box{
       position: absolute;
@@ -369,17 +412,15 @@ export default {
         }
       }
     }
-    .get_live{
+    .click_down{
       position: absolute;
-      bottom: 120px;
+      bottom: 12px;
       width: 100%;
-      height: 24px;
-      line-height: 24px;
       text-align: center;
-      color: #333333;
-      font-size: 12px;
-      font-weight: 600;
-      font-family: 'VWText-Regular','HYQiHei-60S';
+      z-index: -1;
+      .down_gif{
+        width: 500px;
+      }
     }
   }
 }
