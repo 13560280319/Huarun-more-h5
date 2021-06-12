@@ -88,11 +88,11 @@ const shimIndex = ref(0)
 const startSwiperIndex = computed(() => store.state.startActiveSwiperIndex)
 const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
 watch(startSwiperIndex, (newVal) => {
-  dealAddClass('.smartAnimation', 'invisible', true)
+  dealAddClass('.smartAnimation', 'invisible', 0, true)
 })
 watch(endSwiperIndex, (newVal) => {
   if (newVal === 14) {
-    dealRemoveClass('.smartAnimation', 'invisible', true)
+    dealRemoveClass('.smartAnimation', 'invisible', 0, true)
     animateCSS('.smartAnimation', ['animate__fadeInDown'], 0, true, true)
   }
 })

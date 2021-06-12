@@ -4,6 +4,7 @@ import * as mutationTypes from './mutation-types'
 const store = createStore({
   state () {
     return {
+      sliderSwiperName: '', // 滑动的每屏名称
       startActiveSwiperIndex: '', // 过渡开始时当前 Swiper
       endActiveSwiperIndex: '', // 过渡结束时当前 Swiper
       showCommunityOverlay: false, // 美好社区中的 Overlay
@@ -11,6 +12,9 @@ const store = createStore({
     }
   },
   mutations: {
+    [mutationTypes.SET_SLIDER_SWIPER_NAME] (state, name) {
+      state.sliderSwiperName = name
+    },
     [mutationTypes.SET_START_SWIPER_INDEX] (state, swiperIndex) {
       state.startActiveSwiperIndex = swiperIndex
     },

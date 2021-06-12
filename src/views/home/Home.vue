@@ -1,8 +1,9 @@
 <template>
   <div class="swiper_box">
-    <swiper :direction="'vertical'"
+    <swiper :direction="'vertical'" class="home_swiper"
     @slideChangeTransitionEnd="onSlideChangeTransitionEnd"
     @slideChangeTransitionStart="onSlideChangeTransitionStart">
+
       <!-- loading 页面 -->
       <swiper-slide>
         <div class="swiper0">
@@ -12,17 +13,10 @@
 
       <!-- 首页 -->
       <swiper-slide>
-        <div v-if="reverseHome" class="swiper1">
-          <!-- <div class="opinion_box">
-            <div class="opinion_content">
-              <dl v-for="(item, index) of opinionList" :key="index" @click="handleEachOpinion(index)">
-                <dt>{{ item.tag }}</dt>
-                <dd>{{ item.title }}</dd>
-              </dl>
-            </div>
+        <div v-if="reverseHome" class="swiper1 homeAnimate">
+          <div class="home_back">
+            <img src="./../../assets/homePage.gif" alt="">
           </div>
-          <div class="click_down" @click="handleBottomArrow">点击探索美好生活</div>
-          <DownArrow @click="handleBottomArrow"></DownArrow> -->
           <div class="click_down">
             <img class="down_gif" src="./../../assets/touchBottom.gif" alt="">
           </div>
@@ -35,19 +29,29 @@
       </swiper-slide>
 
       <!-- 城市主张 -->
-      <!-- <swiper-slide>
-        <CityOpinion :opinionArray="cityOpinionList"></CityOpinion>
-      </swiper-slide> -->
+      <swiper-slide>
+        <CityOpinion></CityOpinion>
+      </swiper-slide>
 
       <!-- 美好社区--序 -->
       <swiper-slide>
         <PrefacePartCommunity :prefacePartData="prefacePartList.communityPreface" contentClass="communityPreface"></PrefacePartCommunity>
       </swiper-slide>
 
-      <!-- 美好社区--三张图片 -->
-      <!-- <swiper-slide>
-        <BeautifulCommunityFirst></BeautifulCommunityFirst>
-      </swiper-slide> -->
+      <!-- 美好社区--研究过程--页面 1 -->
+      <swiper-slide>
+        <CommunityResearchOne></CommunityResearchOne>
+      </swiper-slide>
+
+      <!-- 美好社区--研究过程--页面 2 -->
+      <swiper-slide>
+        <CommunityResearchTwo></CommunityResearchTwo>
+      </swiper-slide>
+
+      <!-- 美好社区--研究过程--页面 3 -->
+      <swiper-slide>
+        <CommunityResearchThree></CommunityResearchThree>
+      </swiper-slide>
 
       <!-- 美好社区--功能模块 -->
       <!-- <swiper-slide>
@@ -106,34 +110,37 @@
   </div>
 </template>
 <script>
-import DownArrow from '@/components/DownArrow.vue'
 import PrefacePartCity from '@/views/home/components/PrefacePartCity.vue'
-import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
-import PrefacePartLive from '@/views/home/components/PrefacePartLive.vue'
 import PrefacePartCommunity from '@/views/home/components/PrefacePartCommunity.vue'
+import PrefacePartLive from '@/views/home/components/PrefacePartLive.vue'
+import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
 import CityOpinion from '@/views/home/components/CityOpinion.vue'
+import CommunityResearchOne from '@/views/home/components/CommunityResearchOne.vue'
+import CommunityResearchTwo from '@/views/home/components/CommunityResearchTwo.vue'
+import CommunityResearchThree from '@/views/home/components/CommunityResearchThree.vue'
 import OptimalLiveFirst from '@/views/home/components/OptimalLiveFirst.vue'
 import SmartService from '@/views/home/components/SmartService.vue'
-import BeautifulCommunityFirst from '@/views/home/components/BeautifulCommunityFirst.vue'
 import SwitchContent from '@/views/home/components/SwitchContent.vue'
 import OneImage from '@/views/home/components/OneImage.vue'
-import { SET_END_SWIPER_INDEX, SET_START_SWIPER_INDEX } from '@/store/mutation-types'
+import { animateCSS } from '@/utils/animationEnd'
+import { SET_SLIDER_SWIPER_NAME, SET_END_SWIPER_INDEX, SET_START_SWIPER_INDEX } from '@/store/mutation-types'
 import * as imageList from './js/backgroundImage'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
-import { onMounted, ref } from 'vue'
+import { nextTick, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 export default {
   components: {
     Swiper,
     SwiperSlide,
-    DownArrow,
     PrefacePartCity,
     PrefacePartCommunity,
     PrefacePartLive,
     PrefacePartSmart,
     CityOpinion,
-    BeautifulCommunityFirst,
+    CommunityResearchOne,
+    CommunityResearchTwo,
+    CommunityResearchThree,
     SmartService,
     OptimalLiveFirst,
     SwitchContent,
@@ -175,38 +182,6 @@ export default {
           backGif: imageList.smartXu
         }
       },
-      cityOpinionList: [ // 城市主张数据
-        {
-          name: '万象商业',
-          title: '城市理想-万象商业',
-          explain: '华润置地·万象商业 让城市更缤纷',
-          description: '华润置地作为中国知名的商业运营方之一，以万象城、万象天地、万象汇为代表的商业空间，将陆续入驻广州，带来更前沿、更新鲜的生活体验。'
-        },
-        {
-          name: '品质住宅',
-          title: '城市理想-品质住宅',
-          explain: '华润置地·品质住宅 让城市生活更舒服',
-          description: '于城市中，华润置地广州打造了从空中花园、灵山岛C位，到市中心的公园社区等不同维度的理想住宅。'
-        },
-        {
-          name: '润慧科技',
-          title: '城市理想-润慧科技',
-          explain: '华润置地·润慧科技 让城市产业创新生长',
-          description: '华润置地广州立足“为美好生活而来”的使命，打造广州润慧科技园，帮助企业快速成长，推动城市产业转型升级，实现“质的飞跃”'
-        },
-        {
-          name: '有巢公寓',
-          title: '城市理想-有巢公寓',
-          explain: '华润置地·有巢公寓 让城市青年梦有所居',
-          description: '华润置地广州想为每一个努力奋斗的人带来舒适的生活享受，有巢公寓应运而生，让城市青年居有所乐、生活充满无限精彩。'
-        },
-        {
-          name: '颐养中心',
-          title: '城市理想-颐养中心',
-          explain: '华润置地·颐养中心 让长者老有所乐',
-          description: '华润置地广州围绕“养、住、食、娱”四大生活场景，为长者打造一个全能型康养胜地。'
-        }
-      ],
       SmartServiceList: [ // 智慧服务数据
         {
           name: '智能家居',
@@ -317,14 +292,12 @@ export default {
       setTimeout(() => {
         swiper.enabled = true // 解决 swiper.enabled is not a function 报错
         reverseHome.value = true
-        swiper.slideTo(1)
+        nextTick(() => {
+          animateCSS('.homeAnimate', ['animate__fadeIn', 'animate__slow'])
+        })
         swiper.removeSlide(0)
-      }, 6000)
+      }, 5500)
     })
-
-    const handleBottomArrow = () => {
-      swiper.slideTo(2)
-    }
 
     const onSlideChangeTransitionStart = (swiper) => { // 监听每次滑动 swiper 开始
       store.commit(SET_START_SWIPER_INDEX, swiper.activeIndex)
@@ -332,31 +305,24 @@ export default {
 
     const onSlideChangeTransitionEnd = (swiper) => { // 监听每次滑动 swiper 结束
       store.commit(SET_END_SWIPER_INDEX, swiper.activeIndex)
-    }
 
-    const handleEachOpinion = (index) => {
-      switch (index) {
-        case 0:
-          swiper.slideTo(1)
+      switch (swiper.activeIndex) {
+        case 4: // 美好社区--研究过程--页面 1
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityOne')
           break
-        case 1:
-          swiper.slideTo(3)
+        case 5: // 美好社区--研究过程--页面 2
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityTwo')
           break
-        case 2:
-          swiper.slideTo(8)
-          break
-        case 3:
-          swiper.slideTo(13)
+        case 6: // 美好社区--研究过程--页面 3
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityThree')
           break
       }
     }
 
     return {
       reverseHome,
-      handleBottomArrow,
       onSlideChangeTransitionStart,
-      onSlideChangeTransitionEnd,
-      handleEachOpinion
+      onSlideChangeTransitionEnd
     }
   }
 }
@@ -373,43 +339,10 @@ export default {
   }
   .swiper1{
     position: relative;
-    overflow: hidden;
     height: 100%;
-    background-image: url('./../../assets/homePage.gif');
-    background-size: 100%;
-    background-repeat: no-repeat;
-    .opinion_box{
-      position: absolute;
-      top: 72%;
-      width: 100%;
-      .opinion_content{
-        margin: 0 auto;
-        width: 92%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        dl{
-          width: 25%;
-          dt{
-            height: 17px;
-            line-height: 17px;
-            text-align: center;
-            font-size: 17px;
-            font-weight: 600;
-            font-family: 'VWText-Regular','HYQiHei-60S';
-            color: #333333;
-          }
-          dd{
-            margin-top: 17px;
-            height: 12px;
-            line-height: 12px;
-            text-align: center;
-            color: #333333;
-            font-size: 12px;
-            font-weight: 600;
-            font-family: 'VWText-Regular','HYQiHei-60S';
-          }
-        }
+    .home_back{
+      img{
+        width: 100%;
       }
     }
     .click_down{

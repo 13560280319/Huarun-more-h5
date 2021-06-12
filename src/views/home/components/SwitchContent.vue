@@ -31,10 +31,10 @@ const propsObj = defineProps({
 const startSwiperIndex = computed(() => store.state.startActiveSwiperIndex)
 const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
 watch(startSwiperIndex, (newVal) => {
-  dealAddClass('.switchTitle', 'invisible', true)
+  dealAddClass('.switchTitle', 'invisible', 0, true)
 })
 watch(endSwiperIndex, (newVal) => {
-  dealRemoveClass('.switchTitle', 'invisible', true)
+  dealRemoveClass('.switchTitle', 'invisible', 0, true)
   animateCSS('.switchTitle', ['animate__fadeInDown'], 0, true, true)
 })
 

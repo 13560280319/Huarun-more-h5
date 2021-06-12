@@ -37,7 +37,7 @@ const imageLoad = () => {
 const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
 watch(endSwiperIndex, (newVal) => {
   switch (newVal) {
-    case 4:
+    case 8:
       reverseBackGif.value = true
       Promise.all([imagePromise]).then(() => {
         setTimeout(() => {
