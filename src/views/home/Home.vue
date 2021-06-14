@@ -78,6 +78,16 @@
         <OptimalInsight></OptimalInsight>
       </swiper-slide>
 
+      <!-- 优居生活--卧室+阳台 -->
+      <swiper-slide>
+        <OptimalBedroomBalcony></OptimalBedroomBalcony>
+      </swiper-slide>
+
+      <!-- 优居生活--客厅+餐厅 -->
+      <swiper-slide>
+        <OptimalLivingKitchen></OptimalLivingKitchen>
+      </swiper-slide>
+
       <!-- 优居生活--卫浴 -->
       <swiper-slide>
         <OptimalBathroom></OptimalBathroom>
@@ -87,16 +97,6 @@
       <swiper-slide>
         <OptimalStorage></OptimalStorage>
       </swiper-slide>
-
-      <!-- 优居生活--两张图片 -->
-      <!-- <swiper-slide>
-        <OptimalLiveFirst></OptimalLiveFirst>
-      </swiper-slide> -->
-
-      <!-- 优居生活（卧室+阳台） -->
-      <!-- <swiper-slide>
-        <SwitchContent :overlayData="bedroomBalcony"></SwitchContent>
-      </swiper-slide> -->
 
       <!-- 优居生活（客厅 + 餐厨） -->
       <!-- <swiper-slide>
@@ -131,11 +131,6 @@
       <swiper-slide>
         <Ending></Ending>
       </swiper-slide>
-
-      <!-- 智慧服务 -->
-      <!-- <swiper-slide>
-        <SmartService :opinionArray="SmartServiceList"></SmartService>
-      </swiper-slide> -->
     </swiper>
   </div>
 </template>
@@ -149,13 +144,13 @@ import CommunityResearchOne from '@/views/home/components/CommunityResearchOne.v
 import CommunityResearchTwo from '@/views/home/components/CommunityResearchTwo.vue'
 import CommunityResearchThree from '@/views/home/components/CommunityResearchThree.vue'
 import OptimalInsight from '@/views/home/components/OptimalInsight.vue'
+import OptimalBedroomBalcony from '@/views/home/components/OptimalBedroomBalcony.vue'
+import OptimalLivingKitchen from '@/views/home/components/OptimalLivingKitchen.vue'
 import OptimalBathroom from '@/views/home/components/OptimalBathroom.vue'
 import OptimalStorage from '@/views/home/components/OptimalStorage.vue'
 import SmartWarning from '@/views/home/components/SmartWarning.vue'
 import SmartHousekeeper from '@/views/home/components/SmartHousekeeper.vue'
 import SmartHome from '@/views/home/components/SmartHome.vue'
-import OptimalLiveFirst from '@/views/home/components/OptimalLiveFirst.vue'
-import SmartService from '@/views/home/components/SmartService.vue'
 import SwitchContent from '@/views/home/components/SwitchContent.vue'
 import Ending from '@/views/home/components/Ending.vue'
 import { animateCSS } from '@/utils/animationEnd'
@@ -178,14 +173,14 @@ export default {
     CommunityResearchTwo,
     CommunityResearchThree,
     OptimalInsight,
+    OptimalBedroomBalcony,
+    OptimalLivingKitchen,
     OptimalBathroom,
     OptimalStorage,
     SmartWarning,
     SmartHousekeeper,
     SmartHome,
     Ending,
-    SmartService,
-    OptimalLiveFirst,
     SwitchContent
   },
   data () {
@@ -338,7 +333,7 @@ export default {
           animateCSS('.homeAnimate', ['animate__fadeIn', 'animate__slow'])
         })
         swiper.removeSlide(0)
-      }, 5500)
+      }, 500)
     })
 
     const onSlideChangeTransitionStart = (swiper) => { // 监听每次滑动 swiper 开始
@@ -371,25 +366,31 @@ export default {
         case 8: // 优居生活--研究洞察
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalInsight')
           break
-        case 9: // 优居生活--卫浴
+        case 9: // 优居生活--卧室+阳台
+          store.commit(SET_SLIDER_SWIPER_NAME, 'optimalBedroomBalcony')
+          break
+        case 10: // 优居生活--客厅+餐厅
+          store.commit(SET_SLIDER_SWIPER_NAME, 'optimalLivingKitchen')
+          break
+        case 11: // 优居生活--卫浴
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalBathroom')
           break
-        case 10: // 优居生活--收纳
+        case 12: // 优居生活--收纳
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalStorage')
           break
-        case 11: // 智慧服务--序
+        case 13: // 智慧服务--序
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartPrefacePart')
           break
-        case 12: // 智慧服务--预警中心
+        case 14: // 智慧服务--预警中心
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartWarning')
           break
-        case 13: // 智慧服务--生活管家
+        case 15: // 智慧服务--生活管家
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartHousekeeper')
           break
-        case 14: // 智慧服务--家居物联
+        case 16: // 智慧服务--家居物联
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartHome')
           break
-        case 15: // 结束页
+        case 17: // 结束页
           store.commit(SET_SLIDER_SWIPER_NAME, 'ending')
           break
       }

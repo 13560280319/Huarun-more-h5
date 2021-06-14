@@ -79,7 +79,7 @@ export default {
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 3)
           }, 1000)
           break
-        case 'optimalBathroom':
+        case 'optimalBedroomBalcony':
           animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 4)
 
           setTimeout(() => {
@@ -91,7 +91,7 @@ export default {
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 4)
           }, 1000)
           break
-        case 'optimalStorage':
+        case 'optimalLivingKitchen':
           animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 5)
 
           setTimeout(() => {
@@ -103,7 +103,7 @@ export default {
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 5)
           }, 1000)
           break
-        case 'smartWarning':
+        case 'optimalBathroom':
           animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 6)
 
           setTimeout(() => {
@@ -115,7 +115,7 @@ export default {
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 6)
           }, 1000)
           break
-        case 'smartHousekeeper':
+        case 'optimalStorage':
           animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 7)
 
           setTimeout(() => {
@@ -127,7 +127,7 @@ export default {
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 7)
           }, 1000)
           break
-        case 'smartHome':
+        case 'smartWarning':
           animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 8)
 
           setTimeout(() => {
@@ -137,6 +137,30 @@ export default {
           setTimeout(() => {
             dealAddClass('.researchLineAnimate', 'animationLine', [16, 17])
             dealAddClass('.researchShortLineAnimate', 'animationShortLine', 8)
+          }, 1000)
+          break
+        case 'smartHousekeeper':
+          animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 9)
+
+          setTimeout(() => {
+            animateCSS('.researchDescriptionAniamte', ['animate__fadeIn'], 9)
+          }, 500)
+
+          setTimeout(() => {
+            dealAddClass('.researchLineAnimate', 'animationLine', [18, 19])
+            dealAddClass('.researchShortLineAnimate', 'animationShortLine', 9)
+          }, 1000)
+          break
+        case 'smartHome':
+          animateCSS('.researchTitleAnimate', ['animate__fadeIn', 'animate__slow'], 10)
+
+          setTimeout(() => {
+            animateCSS('.researchDescriptionAniamte', ['animate__fadeIn'], 10)
+          }, 500)
+
+          setTimeout(() => {
+            dealAddClass('.researchLineAnimate', 'animationLine', [20, 21])
+            dealAddClass('.researchShortLineAnimate', 'animationShortLine', 10)
           }, 1000)
           break
       }
