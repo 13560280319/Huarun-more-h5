@@ -1,5 +1,5 @@
 <template>
-  <TitleAnimate></TitleAnimate>
+  <TitleAnimate :topTitle="topTitle"></TitleAnimate>
   <div class="community_research_one">
     <div class="each_research_object invisible eachResearchObjectAnimate">
       <div class="ertong_box">
@@ -48,7 +48,13 @@ export default {
     TitleAnimate
   },
   data () {
-    return {}
+    return {
+      topTitle: {
+        title1: '美好社区',
+        title2: '研究过程',
+        description1: '谁经常在社区活动？'
+      }
+    }
   },
   setup () {
     const store = useStore()

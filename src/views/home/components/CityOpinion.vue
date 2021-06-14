@@ -68,10 +68,6 @@ export default {
     }
   },
   setup () {
-    onMounted(() => {
-      const swiper = document.querySelectorAll('.swiper-container')[1].swiper
-    })
-
     return {}
   }
 }

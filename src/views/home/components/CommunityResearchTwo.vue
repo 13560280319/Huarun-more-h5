@@ -1,5 +1,5 @@
 <template>
-  <TitleAnimate></TitleAnimate>
+  <TitleAnimate :topTitle="topTitle"></TitleAnimate>
   <div class="community_research_two">
     <div class="each_dialogue">
       <div class="touxiang invisible touxiangAnimate">
@@ -45,7 +45,13 @@ export default {
     TitleAnimate
   },
   data () {
-    return {}
+    return {
+      topTitle: {
+        title1: '美好社区',
+        title2: '研究过程',
+        description1: '谁经常在社区活动？'
+      }
+    }
   },
   setup () {
     const store = useStore()

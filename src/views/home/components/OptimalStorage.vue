@@ -1,8 +1,10 @@
 <template>
   <TitleAnimate :topTitle="topTitle"></TitleAnimate>
-  <div class="community_research_three">
-    <div class="community_research_image invisible communityResearchImageAnimate">
-      <img src="./../../../assets/yanjiuxin.jpg" />
+  <div class="optimal_storage">
+    <div class="each_storage_box invisible eachStorageBoxAnimate">
+      <div class="image_box">
+        <img class="full_img" src="./../../../assets/shouna.png" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -18,10 +20,10 @@ export default {
   data () {
     return {
       topTitle: {
-        title1: '美好社区',
-        title2: '研究过程',
-        description1: '全家人活动时间',
-        description2: '轨迹一览图'
+        title1: '日常生活中不做',
+        title2: '“细节绝缘体”',
+        description1: '收纳',
+        description2: '空间魔法师'
       }
     }
   },
@@ -29,26 +31,24 @@ export default {
     const store = useStore()
     const sliderSwiperName = computed(() => store.state.sliderSwiperName)
     watch(sliderSwiperName, (newVal, oldVal) => {
-      if (newVal === 'communityActivityThree') {
+      if (newVal === 'optimalStorage') {
         setTimeout(() => {
-          animateCSS('.communityResearchImageAnimate', ['animate__fadeIn'], 0)
-        }, 2000)
+          animateCSS('.eachStorageBoxAnimate', ['animate__fadeIn'], 0)
+        }, 1000)
       }
     })
-
-    return {
-    }
+    return {}
   }
 }
 </script>
 <style lang="less" scoped>
-.community_research_three{
-  padding: 0px 40px;
-  .community_research_image{
-    text-align: center;
+.optimal_storage{
+  margin-top: 160px;
+  padding: 0 40px;
+  .each_storage_box{
     --animate-duration: 1500ms;
-    img{
-      width: 580px;
+    .image_box{
+      width: 100%;
     }
   }
 }

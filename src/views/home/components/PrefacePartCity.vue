@@ -34,20 +34,18 @@ const imageLoad = () => {
   imagePromise = Promise.resolve()
 }
 
-const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
-watch(endSwiperIndex, (newVal) => {
-  switch (newVal) {
-    case 1:
-      reverseBackGif.value = true
-      Promise.all([imagePromise]).then(() => {
+const sliderSwiperName = computed(() => store.state.sliderSwiperName)
+watch(sliderSwiperName, (newVal) => {
+  if (newVal === 'cityPrefacePart') {
+    reverseBackGif.value = true
+    Promise.all([imagePromise]).then(() => {
+      setTimeout(() => {
+        animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
         setTimeout(() => {
-          animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
-          setTimeout(() => {
-            animateCSS('.cityPrefaceTwo', ['animate__fadeIn', 'animate__slow'], 0, false, true)
-          }, 700)
-        }, 1200)
-      })
-      break
+          animateCSS('.cityPrefaceTwo', ['animate__fadeIn', 'animate__slow'], 0, false, true)
+        }, 700)
+      }, 1200)
+    })
   }
 })
 </script>

@@ -34,20 +34,18 @@ const imageLoad = () => {
   imagePromise = Promise.resolve()
 }
 
-const endSwiperIndex = computed(() => store.state.endActiveSwiperIndex)
-watch(endSwiperIndex, (newVal) => {
-  switch (newVal) {
-    case 8:
-      reverseBackGif.value = true
-      Promise.all([imagePromise]).then(() => {
+const sliderSwiperName = computed(() => store.state.sliderSwiperName)
+watch(sliderSwiperName, (newVal) => {
+  if (newVal === 'smartPrefacePart') {
+    reverseBackGif.value = true
+    Promise.all([imagePromise]).then(() => {
+      setTimeout(() => {
+        animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
         setTimeout(() => {
-          animateCSS(`.${propsObj.contentClass}`, ['animate__fadeIn', 'animate__slow'], 0, false, true)
-          setTimeout(() => {
-            animateCSS('.smartPrefaceTwo', ['animate__fadeIn', 'animate__slow'], 0, false, true)
-          }, 700)
-        }, 1200)
-      })
-      break
+          animateCSS('.smartPrefaceTwo', ['animate__fadeIn', 'animate__slow'], 0, false, true)
+        }, 700)
+      }, 1200)
+    })
   }
 })
 
