@@ -1,9 +1,9 @@
 <template>
-  <div class="opinion city_opinion">
+  <div class="city_opinion">
     <swiper
       :slidesPerView="1.29"
       :spaceBetween="25"
-      :slidesOffsetBefore="26"
+      :slidesOffsetBefore="47"
       :slidesOffsetAfter="70"
       :watchSlidesProgress="true"
       :pagination="{
@@ -11,7 +11,7 @@
       }"
       class="city_swiper"
       >
-      <swiper-slide style="padding-left: 20px">
+      <swiper-slide>
         <div class="city_swiper_image_box">
           <img class="city_swiper_image" :src="city1" />
         </div>
@@ -74,7 +74,7 @@ export default {
 
 </script>
 <style lang="less" scoped>
-.opinion{
+.city_opinion{
   height: 100%;
   overflow: hidden;
   .city_swiper{

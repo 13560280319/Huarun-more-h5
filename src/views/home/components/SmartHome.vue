@@ -101,7 +101,7 @@ export default {
     let swiper = reactive({})
 
     onMounted(() => {
-      swiper = document.querySelectorAll('.swiper-container')[4].swiper // 第 5个 swiper 组件
+      swiper = document.querySelectorAll('.swiper-container')[7].swiper // 第 8 个 swiper 组件
       swiper.autoplay.stop()
     })
 

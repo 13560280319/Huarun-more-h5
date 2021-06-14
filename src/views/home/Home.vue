@@ -38,6 +38,11 @@
         <PrefacePartCommunity :prefacePartData="prefacePartList.communityPreface" contentClass="communityPreface"></PrefacePartCommunity>
       </swiper-slide>
 
+      <!-- 美好社区--社区主张 -->
+      <swiper-slide>
+        <CommunityOpinion></CommunityOpinion>
+      </swiper-slide>
+
       <!-- 美好社区--研究过程--页面 1 -->
       <swiper-slide>
         <CommunityResearchOne></CommunityResearchOne>
@@ -51,6 +56,16 @@
       <!-- 美好社区--研究过程--页面 3 -->
       <swiper-slide>
         <CommunityResearchThree></CommunityResearchThree>
+      </swiper-slide>
+
+      <!-- 美好社区--怎么实现 -->
+      <swiper-slide>
+        <CommunityImplementation></CommunityImplementation>
+      </swiper-slide>
+
+      <!-- 美好社区--细节动人 -->
+      <swiper-slide>
+        <CommunityDetails></CommunityDetails>
       </swiper-slide>
 
       <!-- 美好社区--功能模块 -->
@@ -140,9 +155,12 @@ import PrefacePartCommunity from '@/views/home/components/PrefacePartCommunity.v
 import PrefacePartLive from '@/views/home/components/PrefacePartLive.vue'
 import PrefacePartSmart from '@/views/home/components/PrefacePartSmart.vue'
 import CityOpinion from '@/views/home/components/CityOpinion.vue'
+import CommunityOpinion from '@/views/home/components/CommunityOpinion.vue'
 import CommunityResearchOne from '@/views/home/components/CommunityResearchOne.vue'
 import CommunityResearchTwo from '@/views/home/components/CommunityResearchTwo.vue'
 import CommunityResearchThree from '@/views/home/components/CommunityResearchThree.vue'
+import CommunityImplementation from '@/views/home/components/CommunityImplementation.vue'
+import CommunityDetails from '@/views/home/components/CommunityDetails.vue'
 import OptimalInsight from '@/views/home/components/OptimalInsight.vue'
 import OptimalBedroomBalcony from '@/views/home/components/OptimalBedroomBalcony.vue'
 import OptimalLivingKitchen from '@/views/home/components/OptimalLivingKitchen.vue'
@@ -169,9 +187,12 @@ export default {
     PrefacePartLive,
     PrefacePartSmart,
     CityOpinion,
+    CommunityOpinion,
     CommunityResearchOne,
     CommunityResearchTwo,
     CommunityResearchThree,
+    CommunityImplementation,
+    CommunityDetails,
     OptimalInsight,
     OptimalBedroomBalcony,
     OptimalLivingKitchen,
@@ -333,7 +354,7 @@ export default {
           animateCSS('.homeAnimate', ['animate__fadeIn', 'animate__slow'])
         })
         swiper.removeSlide(0)
-      }, 500)
+      }, 5500)
     })
 
     const onSlideChangeTransitionStart = (swiper) => { // 监听每次滑动 swiper 开始
@@ -351,46 +372,55 @@ export default {
         case 3: // 美好社区--序
           store.commit(SET_SLIDER_SWIPER_NAME, 'communityPrefacePart')
           break
-        case 4: // 美好社区--研究过程--页面 1
+        case 4: // 美好社区--社区主张
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityOpinion')
+          break
+        case 5: // 美好社区--研究过程--页面 1
           store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityOne')
           break
-        case 5: // 美好社区--研究过程--页面 2
+        case 6: // 美好社区--研究过程--页面 2
           store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityTwo')
           break
-        case 6: // 美好社区--研究过程--页面 3
+        case 7: // 美好社区--研究过程--页面 3
           store.commit(SET_SLIDER_SWIPER_NAME, 'communityActivityThree')
           break
-        case 7: // 优居生活--序
+        case 8: // 美好社区--怎么实现
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityImplementation')
+          break
+        case 9: // 美好社区--细节动人
+          store.commit(SET_SLIDER_SWIPER_NAME, 'communityDetails')
+          break
+        case 10: // 优居生活--序
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalPrefacePart')
           break
-        case 8: // 优居生活--研究洞察
+        case 11: // 优居生活--研究洞察
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalInsight')
           break
-        case 9: // 优居生活--卧室+阳台
+        case 12: // 优居生活--卧室+阳台
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalBedroomBalcony')
           break
-        case 10: // 优居生活--客厅+餐厅
+        case 13: // 优居生活--客厅+餐厅
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalLivingKitchen')
           break
-        case 11: // 优居生活--卫浴
+        case 14: // 优居生活--卫浴
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalBathroom')
           break
-        case 12: // 优居生活--收纳
+        case 15: // 优居生活--收纳
           store.commit(SET_SLIDER_SWIPER_NAME, 'optimalStorage')
           break
-        case 13: // 智慧服务--序
+        case 16: // 智慧服务--序
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartPrefacePart')
           break
-        case 14: // 智慧服务--预警中心
+        case 17: // 智慧服务--预警中心
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartWarning')
           break
-        case 15: // 智慧服务--生活管家
+        case 18: // 智慧服务--生活管家
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartHousekeeper')
           break
-        case 16: // 智慧服务--家居物联
+        case 19: // 智慧服务--家居物联
           store.commit(SET_SLIDER_SWIPER_NAME, 'smartHome')
           break
-        case 17: // 结束页
+        case 20: // 结束页
           store.commit(SET_SLIDER_SWIPER_NAME, 'ending')
           break
       }
