@@ -5,8 +5,7 @@
       <swiper
         :slidesPerView="1.29"
         :spaceBetween="25"
-        :slidesOffsetBefore="47"
-        :slidesOffsetAfter="50"
+        :centeredSlides="true"
         :watchSlidesProgress="true"
         :pagination="{
           clickable: true

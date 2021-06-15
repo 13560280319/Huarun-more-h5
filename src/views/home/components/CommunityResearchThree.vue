@@ -2,7 +2,15 @@
   <TitleAnimate :topTitle="topTitle"></TitleAnimate>
   <div class="community_research_three">
     <div class="community_research_image invisible communityResearchImageAnimate">
-      <video controls>
+      <video
+      preload="auto"
+      playsinline="true"
+      webkit-playsinline="true"
+      x5-video-player-type="h5-page"
+      x5-video-player-fullscreen="true"
+      x5-video-orientation="portraint"
+      poster="./../../../assets/fengmian.jpg"
+      controls>
         <source src="./../../../assets/yanjiuguiji.mp4" type="video/mp4">
       </video>
     </div>
