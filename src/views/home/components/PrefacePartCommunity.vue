@@ -58,22 +58,22 @@ watch(sliderSwiperName, (newVal) => {
     height: 100%;
   }
   .content_box{
-    padding: 75px 66px;
+    padding: 75px 60px;
     height: 100%;
     position: relative;
     .more{
-      height: 110px;
-      line-height: 110px;
-      font-size: 110px;
+      height: 105px;
+      line-height: 105px;
+      font-size: 105px;
       font-family: "Microsoft YaHei";
       font-weight: 600;
       color: rgba(255, 255, 255, 1);
     }
     .type{
       margin-top: 40px;
-      height: 118px;
-      line-height: 118px;
-      font-size: 154px;
+      height: 145px;
+      line-height: 145px;
+      font-size: 145px;
       font-family: 'Orkney-Bold';
       font-weight: 600;
       color: #ffffff;

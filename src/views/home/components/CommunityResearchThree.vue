@@ -2,7 +2,9 @@
   <TitleAnimate :topTitle="topTitle"></TitleAnimate>
   <div class="community_research_three">
     <div class="community_research_image invisible communityResearchImageAnimate">
-      <img src="./../../../assets/yanjiuxin.jpg" />
+      <video controls>
+        <source src="./../../../assets/yanjiuguiji.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </template>
@@ -44,11 +46,12 @@ export default {
 <style lang="less" scoped>
 .community_research_three{
   padding: 0px 40px;
+  height: 50%;
   .community_research_image{
     text-align: center;
     --animate-duration: 1500ms;
-    img{
-      width: 580px;
+    video{
+      width: 85%;
     }
   }
 }

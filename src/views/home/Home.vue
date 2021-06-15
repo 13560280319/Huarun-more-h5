@@ -354,7 +354,7 @@ export default {
           animateCSS('.homeAnimate', ['animate__fadeIn', 'animate__slow'])
         })
         swiper.removeSlide(0)
-      }, 5500)
+      }, 500)
     })
 
     const onSlideChangeTransitionStart = (swiper) => { // 监听每次滑动 swiper 开始

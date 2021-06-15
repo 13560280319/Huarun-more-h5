@@ -6,7 +6,7 @@
         :slidesPerView="1.29"
         :spaceBetween="25"
         :slidesOffsetBefore="47"
-        :slidesOffsetAfter="55"
+        :slidesOffsetAfter="50"
         :watchSlidesProgress="true"
         :pagination="{
           clickable: true

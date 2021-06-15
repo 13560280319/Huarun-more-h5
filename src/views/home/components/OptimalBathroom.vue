@@ -113,11 +113,11 @@ export default {
     text-align: center;
     box-sizing: border-box;
     .bathroom_swiper_image{
-      height: 400px;
+      height: 460px;
     }
   }
   .bottom_navigation{
-    margin-top: 100px;
+    margin-top: 50px;
     padding: 0 50px;
     display: flex;
     flex-direction: row;

@@ -4,7 +4,7 @@
       :slidesPerView="1.29"
       :spaceBetween="25"
       :slidesOffsetBefore="47"
-      :slidesOffsetAfter="70"
+      :slidesOffsetAfter="50"
       :watchSlidesProgress="true"
       :pagination="{
         clickable: true
@@ -45,13 +45,12 @@ import city2 from './../../../assets/city2.jpeg'
 import city3 from './../../../assets/city3.jpeg'
 import city4 from './../../../assets/city4.jpeg'
 import city5 from './../../../assets/city5.jpeg'
+import { onMounted } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/swiper.less'
-import SwiperCore, { Pagination } from 'swiper'
-import 'swiper/components/pagination/pagination.less'
-import { onMounted } from 'vue'
-
-SwiperCore.use([Pagination])
+// import SwiperCore, { Pagination } from 'swiper'
+// import 'swiper/components/pagination/pagination.less'
+// SwiperCore.use([Pagination])
 
 export default {
   components: {

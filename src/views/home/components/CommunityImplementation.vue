@@ -79,8 +79,8 @@ export default {
       topTitle: {
         title1: '有温度、有互动的',
         title2: '美好社区',
-        description1: '道路千万条',
-        description2: '安全第一条'
+        description1: '精细化科学分区',
+        description2: '给家长提供专享看护区域'
       },
       bottomExplain: {
         partImage: part1,
@@ -264,9 +264,10 @@ export default {
     }
   }
   .bottom_explain{
+    margin-top: -20px;
+    padding-left: 70px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     font-size: 32px;
     font-weight: 500;
     font-family: 'PingFang SC';
